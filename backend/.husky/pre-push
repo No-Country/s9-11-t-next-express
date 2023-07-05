@@ -3,5 +3,5 @@
 . "$(dirname "$0")/common.sh"
 
 echo "📝 Check Test files..."
-cd nest-backend
+cd backend
 yarn  test 

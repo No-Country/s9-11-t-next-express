@@ -1,7 +1,6 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Header from './common/components/Header'
+import Footer from './common/components/Footer'
 
 export const metadata = {
   title: 'Mercado Libre',
@@ -15,8 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>
-        {children}
+      <body className='flex flex-col justify-between min-h-screen'>
+        <div>
+          <Header />
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   )

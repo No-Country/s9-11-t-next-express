@@ -1,6 +1,6 @@
 export default function UserSection() {
     return (
-        <div className="flex justify-end items-center gap-[22px]">
+        <div className="flex justify-end items-center gap-[22px] text-[#333]">
             <div className="flex gap-[22px]">
                 <a href="">Crea tu cuenta</a>
                 <a href="">Ingresa</a>

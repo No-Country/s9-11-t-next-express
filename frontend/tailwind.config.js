@@ -12,8 +12,7 @@ module.exports = {
         DEFAULT: '1rem',
         sm: '2rem',
         lg: '4rem',
-        xl: '5rem',
-        '2xl': '6rem',
+        xl: '5rem'
       },
     },
     extend: {
@@ -34,7 +33,10 @@ module.exports = {
         'text-grey3': 'rgb(53,53,53)',
         'text-grey4': 'rgb(153,153,153)',
       },
-      
+      maxWidth: {
+        'container': '1200px'
+      }
+
     },
   },
   plugins: [],

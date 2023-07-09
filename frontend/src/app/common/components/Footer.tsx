@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 export default function Navbar() {
+
   return (
     <footer className="flex justify-center">
       <div className="h-custom-height flex flex-col max-w-[1200px] min-w-full">
@@ -184,7 +185,6 @@ export default function Navbar() {
         </section>
         <section>
           <div className="mt-20">
-
           </div>
         </section>
         <section className="flex justify-center">

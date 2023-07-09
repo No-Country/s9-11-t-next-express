@@ -21,9 +21,22 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      height: {
+        'custom-height': '722px',
+      },
+      margin:{
+        'custom-margin': '4px 0 10px'
+      },
+      colors: {
+        'text-grey': 'rgb(75,75,75)',
+        'text-grey2': 'rgb(115,115,115)',
+        'text-grey3': 'rgb(53,53,53)',
+        'text-grey4': 'rgb(153,153,153)',
+      },
       maxWidth: {
         'container': '1200px'
       }
+
     },
   },
   plugins: [],

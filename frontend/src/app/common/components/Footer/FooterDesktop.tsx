@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-export default function Navbar() {
+export default function FooterDesktop() {
 
   return (
     <footer className="flex justify-center bg-white">
@@ -135,7 +135,7 @@ export default function Navbar() {
                     src="https://http2.mlstatic.com/frontend-assets/homes-palpatine/./help-email/icon_email.svg"
                     alt=""
                   />
-                  <span>ayuda@mercadolibre.com.ar</span>
+                  <span className="text-text-grey2 ml-2">ayuda@mercadolibre.com.ar</span>
                 </a>
               </div>
               <div className="h-[61px] w-[289px] flex items-center">

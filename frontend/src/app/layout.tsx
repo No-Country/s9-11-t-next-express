@@ -1,6 +1,7 @@
 import './globals.css'
 import Header from './common/components/Header'
-import Footer from './common/components/Footer'
+import FooterDesktop from './common/components/Footer/FooterDesktop'
+import FooterMobile from './common/components/Footer/FooterMobile'
 
 export const metadata = {
   title: 'Mercado Libre',
@@ -19,7 +20,8 @@ export default function RootLayout({
           <Header />
           {children}
         </div>
-        <Footer />
+        {/* <FooterDesktop /> */}
+        <FooterMobile />
       </body>
     </html>
   )

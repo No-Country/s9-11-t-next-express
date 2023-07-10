@@ -23,6 +23,8 @@ module.exports = {
       },
       height: {
         'custom-height': '722px',
+        'custom-height-mobile': '1500px',
+        
       },
       margin:{
         'custom-margin': '4px 0 10px'
@@ -32,6 +34,7 @@ module.exports = {
         'text-grey2': 'rgb(115,115,115)',
         'text-grey3': 'rgb(53,53,53)',
         'text-grey4': 'rgb(153,153,153)',
+        'amarillo-meli':'rgb(255,241,89)',
       },
       maxWidth: {
         'container': '1200px'

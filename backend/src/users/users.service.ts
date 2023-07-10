@@ -24,8 +24,13 @@ export class UsersService {
   async create(createUserDto: CreateUserDto) {
     try {
       const user = await this.UserModel.create(createUserDto)
+      const userData = user.toObject({ virtuals: true })
+      delete userData.id
+      delete userData._id
+      delete userData.__v
+      delete userData.password
       return {
-        ...user.toObject(),
+        ...userData,
         token: this.getJwtToken({ email: user.email }),
       }
     } catch (error) {
@@ -79,11 +84,9 @@ export class UsersService {
   private handleExceptions(error: any) {
     if (error.code === 11000) {
       throw new BadRequestException(
-        `Restister exists in db ${JSON.stringify(error.keyValue)}`,
+        `User exists in db ${JSON.stringify(error.keyValue)}`,
       )
     }
-    throw new InternalServerErrorException(
-      `Can't create Restister - Check server logs`,
-    )
+    throw new InternalServerErrorException(`${error}`)
   }
 }

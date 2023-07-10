@@ -20,8 +20,8 @@ export default function RootLayout({
           <Header />
           {children}
         </div>
-        {/* <FooterDesktop /> */}
-        <FooterMobile />
+        <FooterDesktop />
+        {/* <FooterMobile /> */}
       </body>
     </html>
   )

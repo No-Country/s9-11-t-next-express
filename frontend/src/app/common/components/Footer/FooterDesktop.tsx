@@ -2,7 +2,7 @@
 export default function FooterDesktop() {
 
   return (
-    <footer className="flex justify-center bg-white">
+    <footer className="flex justify-center bg-white mt-[800px]">
       <div className="h-custom-height flex flex-col max-w-[1200px] min-w-full">
         <section className="pt-5 h-[282px]">
           <div className="flex justify-center pt-11">

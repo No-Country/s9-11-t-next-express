@@ -6,6 +6,7 @@ import { User, UserSchema } from './entities/user.entity'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
 import { JwtStrategy } from './strategies/jwt.strategy'
+import { CloudinaryModule } from 'src/cloudinary/cloudinary.module'
 
 @Module({
   controllers: [UsersController],
@@ -26,6 +27,7 @@ import { JwtStrategy } from './strategies/jwt.strategy'
         },
       }),
     }),
+    CloudinaryModule,
   ],
   exports: [MongooseModule, JwtStrategy, PassportModule, JwtModule],
 })

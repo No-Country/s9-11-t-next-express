@@ -3,13 +3,9 @@ import { Document } from 'mongoose'
 import * as bcrypt from 'bcrypt'
 
 export type UserDocument = User & Document
-export interface UserI extends Document {
-  email: string
-  password: string
-}
 
 @Schema()
-export class User extends Document implements UserI {
+export class User extends Document {
   @Prop({
     index: true,
     required: true,
@@ -67,7 +63,7 @@ export class User extends Document implements UserI {
   avatar: string
 
   @Prop({
-    default: false,
+    default: true,
   })
   active: boolean
 

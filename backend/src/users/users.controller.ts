@@ -6,12 +6,15 @@ import {
   Patch,
   Param,
   Delete,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { Auth, GetUser } from './decorators'
 import { User } from './entities/user.entity'
+import { FileInterceptor } from '@nestjs/platform-express'
 
 @Controller('users')
 export class UsersController {
@@ -27,24 +30,25 @@ export class UsersController {
     return this.usersService.login(loginUserDto)
   }
 
-  @Get()
+  @Get('current')
   @Auth()
-  findAll(@GetUser() user: User) {
+  findUser(@GetUser() user: User) {
     return user
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id)
-  }
-
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto)
+  @UseInterceptors(FileInterceptor('file'))
+  update(
+    @Param('id') id: string,
+    @UploadedFile() file: Express.Multer.File,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return this.usersService.update(id, updateUserDto, file)
   }
 
   @Delete(':id')
+  @Auth()
   remove(@Param('id') id: string) {
-    return this.usersService.remove(+id)
+    return this.usersService.remove(id)
   }
 }

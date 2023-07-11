@@ -12,6 +12,7 @@ import { InjectModel } from '@nestjs/mongoose'
 import { JwtPayloadI } from './common/jwtPayload.interface'
 import { JwtService } from '@nestjs/jwt'
 import * as bcrypt from 'bcrypt'
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service'
 
 @Injectable()
 export class UsersService {
@@ -19,13 +20,19 @@ export class UsersService {
     @InjectModel(User.name)
     private readonly UserModel: Model<User>,
     private readonly jwtService: JwtService,
+    private cloudinary: CloudinaryService,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
     try {
       const user = await this.UserModel.create(createUserDto)
+      const userData = user.toObject({ virtuals: true })
+      delete userData.id
+      delete userData._id
+      delete userData.__v
+      delete userData.password
       return {
-        ...user.toObject(),
+        ...userData,
         token: this.getJwtToken({ email: user.email }),
       }
     } catch (error) {
@@ -54,21 +61,54 @@ export class UsersService {
     }
   }
 
-  findAll() {
-    return this.UserModel.find().exec()
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto,
+    file?: Express.Multer.File,
+  ) {
+    try {
+      const public_id = await this.getPreviewAvatar(id)
+      if (file && public_id) {
+        const result = await this.cloudinary.uploadFileCloudinary(
+          file,
+          public_id,
+        )
+        // Actualiza avatar url y los campos adicionales en el objeto
+        updateUserDto.avatar = result.secure_url
+      }
+      const updatedUser = await this.UserModel.findByIdAndUpdate(
+        id,
+        updateUserDto,
+        { new: true },
+      )
+
+      return updatedUser
+    } catch (error) {
+      this.handleExceptions(error)
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`
+  async remove(id: string) {
+    const userFind = await this.UserModel.findById(id)
+    if (userFind) {
+      userFind.active = false
+      await userFind.save()
+    }
+    return { msg: `Deleted User - Inactive User` }
   }
 
-  // eslint-disable-next-line unused-imports/no-unused-vars, @typescript-eslint/no-unused-vars
-  update(id: number, _updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`
-  }
+  private async getPreviewAvatar(id: string) {
+    const preview_avatar = (
+      await this.UserModel.findById(id).select('avatar -_id').exec()
+    ).avatar
 
-  remove(id: number) {
-    return `This action removes a #${id} user`
+    let public_id = ''
+    if (preview_avatar?.includes('cloudinary.com')) {
+      public_id = preview_avatar
+        .split('/')
+        [preview_avatar.split('/').length - 1].split('.')[0]
+    }
+    return public_id
   }
 
   private getJwtToken(payload: JwtPayloadI) {
@@ -79,11 +119,10 @@ export class UsersService {
   private handleExceptions(error: any) {
     if (error.code === 11000) {
       throw new BadRequestException(
-        `Restister exists in db ${JSON.stringify(error.keyValue)}`,
+        `User exists in db ${JSON.stringify(error.keyValue)}`,
       )
     }
-    throw new InternalServerErrorException(
-      `Can't create Restister - Check server logs`,
-    )
+    console.log(error)
+    throw new InternalServerErrorException(`${error}`)
   }
 }

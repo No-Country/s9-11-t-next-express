@@ -3,30 +3,35 @@ import { Document } from 'mongoose'
 import * as bcrypt from 'bcrypt'
 
 export type UserDocument = User & Document
-export interface UserI extends Document {
-  email: string
-  password: string
-}
 
 @Schema()
-export class User extends Document implements UserI {
+export class User extends Document {
   @Prop({
     index: true,
+    required: true,
+    lowercase: true,
   })
   name: string
 
   @Prop({
-    default: null,
+    index: true,
+    required: true,
+    lowercase: true,
   })
   lastname: string
 
   @Prop({
     unique: true,
     index: true,
+    required: true,
+    lowercase: true,
   })
   email: string
 
-  @Prop({ select: false })
+  @Prop({
+    select: false,
+    required: true,
+  })
   password: string
 
   @Prop({
@@ -39,8 +44,34 @@ export class User extends Document implements UserI {
   })
   phone: string
 
+  @Prop({
+    default: function () {
+      if (this.name && this.lastname)
+        return `${this.name.slice(0, 4)}${this.lastname.substring(
+          this.lastname.length - 3,
+        )}${Math.floor(Math.random() * 1000)}`
+      return null
+    },
+  })
+  username: string
+
+  @Prop({
+    default: function () {
+      return `https://ui-avatars.com/api/?name=${this.name}+${this.lastname}`
+    },
+  })
+  avatar: string
+
+  @Prop({
+    default: true,
+  })
+  active: boolean
+
   @Prop({ enum: ['buyer', 'seller'], default: 'buyer' })
   rol: string
+
+  @Prop({ select: false })
+  __v: number // Omitir el campo __v
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)

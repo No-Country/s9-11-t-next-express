@@ -14,6 +14,20 @@ import mercado from "../../../../../public/images/home/main_mercado.jpg";
 import laptop from "../../../../../public/images/home/main_laptops.jpg";
 import ropa from "../../../../../public/images/home/main_ropa.jpg";
 import estetica from "../../../../../public/images/home/main_estetica.jpg";
+import {AiOutlineCar} from "react-icons/ai";
+import {RiComputerLine} from "react-icons/ri";
+import {PiTShirtThin} from "react-icons/pi";
+import {PiArmchair} from "react-icons/pi";
+import {GiCarWheel} from "react-icons/gi";
+import {BiSolidFridge} from "react-icons/bi";
+import {BsCamera} from "react-icons/bs";
+import {GiSmartphone} from "react-icons/gi";
+import {GiLipstick} from "react-icons/gi";
+import {BiFootball} from "react-icons/bi";
+import {AiOutlineAudio} from "react-icons/ai";
+import {MdOutlineVideogameAsset} from "react-icons/md";
+import {TbHorseToy} from "react-icons/tb";
+import {AiOutlineTool} from "react-icons/ai";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -176,7 +190,7 @@ export default function Main() {
 
         <section className="mt-12">
 
-          <h1 className="text-lg mt-3 font-semibold">Descubre</h1>
+          <h1 className="text-lg mt-3 font-medium">Descubre</h1>
 
           <div className="flex flex-row justify-center pt-5 pb-10 items-start ">
             <div className="h-[250px] w-[1200px] flex justify-center">
@@ -208,39 +222,134 @@ export default function Main() {
 
         </section>
 
-        <section className="mt-12">
+        <section className="mt-4">
 
-<h1 className="text-lg mt-3 font-semibold">Te puede interesar</h1>
+        <h1 className="text-lg mt-3 font-medium">Te puede interesar</h1>
 
-<div className="flex flex-row justify-center pt-5 pb-10 items-start ">
-  <div className="h-[250px] w-[1200px] flex justify-center">
-    
-      <div className="flex flex-row bg-white ml-3 rounded-lg ">
-        <div className="flex flex-col justify-center items-start pr-4 ">
-         <p className="text-xs flex px-[40px]">TU OUTFIT IDEAL</p>
-         <p className="text-2xl flex px-[40px]">ROPA Y MÁS HASTA 50% OFF</p>
-         <button className="bg-blue-500 py-2 ml-5 text-xs text-white font-semibold my-4 border rounded-lg px-[50px] ">
-          Ver más
-         </button>
+        <div className="flex flex-row justify-center pt-5 pb-10 items-start ">
+          <div className="h-[250px] w-[1200px] flex justify-center">
+            
+              <div className="flex flex-row bg-white ml-3 rounded-lg ">
+                <div className="flex flex-col justify-center items-start pr-4 ">
+                <p className="text-xs flex px-[40px]">TU OUTFIT IDEAL</p>
+                <p className="text-2xl flex px-[40px]">ROPA Y MÁS HASTA 50% OFF</p>
+                <button className="bg-blue-500 py-2 ml-5 text-xs text-white font-semibold my-4 border rounded-lg px-[50px] ">
+                  Ver más
+                </button>
 
+                </div>
+                <Image className="rounded-r-lg" width={260} height={205} src={ropa} alt="mercado" />
+              </div>
+              <div className="flex flex-row bg-white ml-9 rounded-lg ">
+                <div className="flex flex-col justify-center items-start  ">
+                <p className="text-xs flex px-[10px]">TUS MARCAS FAVORITAS EN</p>
+                <p className="text-2xl flex px-[10px]">BELLEZA Y CUIDADO HASTA 50% OFF</p>
+                <button className="bg-blue-500 py-2 ml-5 text-xs text-white font-semibold my-4 border rounded-lg px-[50px]">
+                  Ver más
+                </button>
+
+                </div>
+                <Image className="rounded-r-lg" width={250} height={205} src={estetica} alt="mercado" />
+              </div>
+          </div>
         </div>
-        <Image className="rounded-r-lg" width={260} height={205} src={ropa} alt="mercado" />
-      </div>
-      <div className="flex flex-row bg-white ml-9 rounded-lg ">
-        <div className="flex flex-col justify-center items-start  ">
-         <p className="text-xs flex px-[10px]">TUS MARCAS FAVORITAS EN</p>
-         <p className="text-2xl flex px-[10px]">BELLEZA Y CUIDADO HASTA 50% OFF</p>
-         <button className="bg-blue-500 py-2 ml-5 text-xs text-white font-semibold my-4 border rounded-lg px-[50px]">
-          Ver más
-         </button>
 
-        </div>
-        <Image className="rounded-r-lg" width={250} height={205} src={estetica} alt="mercado" />
-      </div>
-  </div>
-</div>
+        </section>
 
-</section>
+        <section className="mt-4">
+        <h1 className="text-lg mt-3 font-medium mb-5">Categorías importantes</h1>
+
+          <div className="grid grid-cols-7 mx-auto h-[250px] w-[1200px] bg-white rounded-lg ">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div >
+                <AiOutlineCar className="w-[40px] h-[40px] mb-2 text-blue-400" />
+              </div>
+              <p>Carros, Motos y otros</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <RiComputerLine className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Computación</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <PiTShirtThin className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Ropa y Accesorios</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <PiArmchair className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Hogar y Muebles</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <GiCarWheel className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Accesorios para vehículos</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <BiSolidFridge className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Electrodomésticos</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <BsCamera className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Camaras y Accesorios</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <GiSmartphone className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Celulares y Teléfonos</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <GiLipstick className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Belleza y Cuidado </p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <BiFootball className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Deportes y Fitness</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <AiOutlineAudio className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Electrónica, Audio y Video</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <MdOutlineVideogameAsset className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Consolas y Videojuegos</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <TbHorseToy className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Juegos y Juguetes</p>
+            </div>
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+              <div>
+                <AiOutlineTool className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+              </div>
+              <p>Herramientas</p>
+            </div>
+  
+        
+
+          </div>
+          
+          </section>
 
       </div>
     </main>

@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common'
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common'
 import { CreateCategoryDto } from './dto/create-category.dto'
 import { UpdateCategoryDto } from './dto/update-category.dto'
 import { InjectModel } from '@nestjs/mongoose'
@@ -12,29 +17,41 @@ export class CategoriesService {
     private readonly CategoryModel: Model<Category>,
   ) {}
 
-  async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
-    const createSubcategory = new this.CategoryModel(createCategoryDto)
-    return createSubcategory.save()
+  async create(createCategoryDto: CreateCategoryDto) {
+    try {
+      const category = await this.CategoryModel.create(createCategoryDto)
+      return category
+    } catch (error) {
+      if (error.code === 11000) {
+        throw new ConflictException('Category already exists')
+      }
+      throw new InternalServerErrorException(`${error}`)
+    }
   }
 
-  async findAll(): Promise<Category[]> {
-    return this.CategoryModel.find().exec()
+  async findAll() {
+    return await this.CategoryModel.find()
   }
 
-  async findOne(id: number) {
-    return this.CategoryModel.findById(id).exec()
+  async findOne(id: string) {
+    const category = await this.CategoryModel.findById(id)
+    if (!category) throw new NotFoundException('Category does not exist!')
+    return category
   }
 
-  async update(
-    id: number,
-    updateCategoryDto: UpdateCategoryDto,
-  ): Promise<Category> {
-    return this.CategoryModel.findByIdAndUpdate(id, updateCategoryDto, {
-      new: true,
-    })
+  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
+    const category = await this.CategoryModel.findByIdAndUpdate(
+      id,
+      updateCategoryDto,
+      { new: true },
+    )
+    if (!category) throw new NotFoundException('Category does not exist!')
+    return category
   }
 
-  async remove(id: number): Promise<Category> {
-    return this.CategoryModel.findByIdAndDelete(id)
+  async remove(id: string) {
+    const category = await this.CategoryModel.findByIdAndDelete(id)
+    if (!category) throw new NotFoundException('Category does not exist!')
+    return id
   }
 }

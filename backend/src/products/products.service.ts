@@ -1,26 +1,56 @@
-import { Injectable } from '@nestjs/common';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common'
+import { CreateProductDto } from './dto/create-product.dto'
+import { UpdateProductDto } from './dto/update-product.dto'
+import { Product } from './entities/product.entity'
+import { Model } from 'mongoose'
+import { InjectModel } from '@nestjs/mongoose'
 
 @Injectable()
 export class ProductsService {
-  create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product';
+  constructor(
+    @InjectModel(Product.name)
+    private readonly ProductModel: Model<Product>,
+  ) {}
+
+  async create(createProductDto: CreateProductDto) {
+    try {
+      const createProduct = await this.ProductModel.create(createProductDto)
+      return createProduct
+    } catch (error) {
+      throw new InternalServerErrorException(`${error}`)
+    }
   }
 
-  findAll() {
-    return `This action returns all products`;
+  async findAll() {
+    return await this.ProductModel.find()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  async findOne(id: string) {
+    const product = await this.ProductModel.findById(id)
+    if (!product) throw new NotFoundException('Product does not exist!')
+    return product
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async update(id: string, updateProductDto: UpdateProductDto) {
+    const product = await this.ProductModel.findByIdAndUpdate(
+      id,
+      updateProductDto,
+      { new: true },
+    )
+    if (!product) throw new NotFoundException('Product does not exist!')
+    await product.save()
+    return product
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async remove(id: string) {
+    const product = await this.ProductModel.findById(id)
+    if (!product) throw new NotFoundException('Product does not exist!')
+    product.active = false
+    await product.save()
+    return { msg: `Removed Product - Inactive Product` }
   }
 }

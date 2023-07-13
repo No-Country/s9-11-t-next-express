@@ -3,6 +3,7 @@ import {
   IsBoolean,
   IsEmail,
   IsEnum,
+  IsOptional,
   IsString,
   Matches,
   MaxLength,
@@ -29,22 +30,28 @@ export class CreateUserDto {
   password: string
 
   @IsString()
-  address: string
+  @IsOptional()
+  address?: string
 
   @IsString()
-  phone: string
+  @IsOptional()
+  phone?: string
 
   @IsString()
   @Transform(({ value }) => value.toLowerCase())
-  username: string
+  @IsOptional()
+  username?: string
 
   @IsString()
-  avatar: string
+  @IsOptional()
+  avatar?: string
 
   @IsBoolean()
-  active: boolean
+  @IsOptional()
+  active?: boolean
 
   @IsEnum(['buyer', 'seller'])
   @Transform(({ value }) => value.toLowerCase())
-  rol: string
+  @IsOptional()
+  rol?: string
 }

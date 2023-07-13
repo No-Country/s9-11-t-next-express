@@ -13,6 +13,7 @@ import { JwtPayloadI } from './common/jwtPayload.interface'
 import { JwtService } from '@nestjs/jwt'
 import * as bcrypt from 'bcrypt'
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service'
+import { CLOUDINARY_FOLDERS } from 'src/cloudinary/constants'
 
 @Injectable()
 export class UsersService {
@@ -72,6 +73,7 @@ export class UsersService {
         const result = await this.cloudinary.uploadFileCloudinary(
           file,
           public_id,
+          CLOUDINARY_FOLDERS.USERS,
         )
         // Actualiza avatar url y los campos adicionales en el objeto
         updateUserDto.avatar = result.secure_url

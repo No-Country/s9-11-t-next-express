@@ -4,11 +4,8 @@ import {
   Post,
   Body,
   Param,
+  Patch,
   Delete,
-  Put,
-  ConflictException,
-  NotFoundException,
-  HttpCode,
 } from '@nestjs/common'
 import { CategoriesService } from './categories.service'
 import { CreateCategoryDto } from './dto/create-category.dto'
@@ -19,42 +16,30 @@ export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Post()
-  async create(@Body() body: CreateCategoryDto) {
-    try {
-      return await this.categoriesService.create(body)
-    } catch (error) {
-      if (error.code === 11000) {
-        throw new ConflictException('Category already exists')
-      }
-      console.log(error)
-      return error.message
-    }
+  create(@Body() createCategoryDto: CreateCategoryDto) {
+    return this.categoriesService.create(createCategoryDto)
   }
 
   @Get()
-  async findAll() {
-    return await this.categoriesService.findAll()
+  findAll() {
+    return this.categoriesService.findAll()
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const category = await this.categoriesService.findOne(+id)
-    if (!category) throw new NotFoundException('Category does not exist!')
-    return category
+  findOne(@Param('id') id: string) {
+    return this.categoriesService.findOne(id)
   }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() body: UpdateCategoryDto) {
-    const category = await this.categoriesService.update(+id, body)
-    if (!category) throw new NotFoundException('Category does not exist!')
-    return category
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateCategoryDto: UpdateCategoryDto,
+  ) {
+    return this.categoriesService.update(id, updateCategoryDto)
   }
 
   @Delete(':id')
-  @HttpCode(204)
-  async remove(@Param('id') id: string) {
-    const category = await this.categoriesService.remove(+id)
-    if (!category) throw new NotFoundException('Category does not exist!')
-    return category
+  remove(@Param('id') id: string) {
+    return this.categoriesService.remove(id)
   }
 }

@@ -4,11 +4,8 @@ import {
   Post,
   Body,
   Param,
+  Patch,
   Delete,
-  ConflictException,
-  NotFoundException,
-  HttpCode,
-  Put,
 } from '@nestjs/common'
 import { SubcategoriesService } from './subcategories.service'
 import { CreateSubcategoryDto } from './dto/create-subcategory.dto'
@@ -19,42 +16,30 @@ export class SubcategoriesController {
   constructor(private readonly subcategoriesService: SubcategoriesService) {}
 
   @Post()
-  async create(@Body() body: CreateSubcategoryDto) {
-    try {
-      return await this.subcategoriesService.create(body)
-    } catch (error) {
-      if (error.code === 11000) {
-        throw new ConflictException('Subcategory already exists')
-      }
-      console.log(error)
-      return error.message
-    }
+  create(@Body() createSubcategoryDto: CreateSubcategoryDto) {
+    return this.subcategoriesService.create(createSubcategoryDto)
   }
 
   @Get()
-  async findAll() {
-    return await this.subcategoriesService.findAll()
+  findAll() {
+    return this.subcategoriesService.findAll()
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const subcategory = await this.subcategoriesService.findOne(+id)
-    if (!subcategory) throw new NotFoundException('Subcategory does not exist!')
-    return subcategory
+  findOne(@Param('id') id: string) {
+    return this.subcategoriesService.findOne(id)
   }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() body: UpdateSubcategoryDto) {
-    const subcategory = await this.subcategoriesService.update(+id, body)
-    if (!subcategory) throw new NotFoundException('Subcategory does not exist!')
-    return subcategory
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateSubcategoryDto: UpdateSubcategoryDto,
+  ) {
+    return this.subcategoriesService.update(id, updateSubcategoryDto)
   }
 
   @Delete(':id')
-  @HttpCode(204)
-  async remove(@Param('id') id: string) {
-    const subcategory = await this.subcategoriesService.remove(+id)
-    if (!subcategory) throw new NotFoundException('Subcategory does not exist!')
-    return subcategory
+  remove(@Param('id') id: string) {
+    return this.subcategoriesService.remove(id)
   }
 }

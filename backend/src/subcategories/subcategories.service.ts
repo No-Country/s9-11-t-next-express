@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common'
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common'
 import { CreateSubcategoryDto } from './dto/create-subcategory.dto'
 import { UpdateSubcategoryDto } from './dto/update-subcategory.dto'
 import { InjectModel } from '@nestjs/mongoose'
@@ -12,31 +17,43 @@ export class SubcategoriesService {
     private readonly SubcategoryModel: Model<Subcategory>,
   ) {}
 
-  async create(
-    createSubcategoryDto: CreateSubcategoryDto,
-  ): Promise<Subcategory> {
-    const createSubcategory = new this.SubcategoryModel(createSubcategoryDto)
-    return createSubcategory.save()
+  async create(createSubcategoryDto: CreateSubcategoryDto) {
+    try {
+      const subcategory = await this.SubcategoryModel.create(
+        createSubcategoryDto,
+      )
+      return subcategory
+    } catch (error) {
+      if (error.code === 11000) {
+        throw new ConflictException('Subcategory already exists')
+      }
+      throw new InternalServerErrorException(`${error}`)
+    }
   }
 
-  async findAll(): Promise<Subcategory[]> {
-    return this.SubcategoryModel.find().exec()
+  async findAll() {
+    return await this.SubcategoryModel.find()
   }
 
-  async findOne(id: number) {
-    return this.SubcategoryModel.findById(id).exec()
+  async findOne(id: string) {
+    const subcategory = await this.SubcategoryModel.findById(id)
+    if (!subcategory) throw new NotFoundException('Subcategory does not exist!')
+    return subcategory
   }
 
-  async update(
-    id: number,
-    updateSubcategoryDto: UpdateSubcategoryDto,
-  ): Promise<Subcategory> {
-    return this.SubcategoryModel.findByIdAndUpdate(id, updateSubcategoryDto, {
-      new: true,
-    })
+  async update(id: string, updateSubcategoryDto: UpdateSubcategoryDto) {
+    const subcategory = await this.SubcategoryModel.findByIdAndUpdate(
+      id,
+      updateSubcategoryDto,
+      { new: true },
+    )
+    if (!subcategory) throw new NotFoundException('Subcategory does not exist!')
+    return subcategory
   }
 
-  async remove(id: number): Promise<Subcategory> {
-    return this.SubcategoryModel.findByIdAndDelete(id)
+  async remove(id: string) {
+    const subcategory = await this.SubcategoryModel.findByIdAndDelete(id)
+    if (!subcategory) throw new NotFoundException('Subcategory does not exist!')
+    return id
   }
 }

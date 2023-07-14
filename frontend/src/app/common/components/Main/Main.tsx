@@ -259,90 +259,90 @@ export default function Main() {
         <section className="mt-4">
         <h1 className="text-lg mt-3 font-medium mb-5">Categorías importantes</h1>
 
-          <div className="grid grid-cols-7 mx-auto h-[250px] w-[1200px] bg-white rounded-lg ">
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+          <div className="grid grid-cols-7 mx-auto h-[340px] w-[1200px] bg-white rounded-lg ">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div >
-                <AiOutlineCar className="w-[40px] h-[40px] mb-2 text-blue-400" />
+                <AiOutlineCar className="w-[40px] h-[40px] mb-2 text-gray-400" />
               </div>
-              <p>Carros, Motos y otros</p>
+              <p className="text-gray-400">Carros, Motos y otros</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
-              <div>
-                <RiComputerLine className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
+              <div className="hover:text-gray-400">
+                <RiComputerLine className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Computación</p>
+              <p className="text-gray-400">Computación</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <PiTShirtThin className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <PiTShirtThin className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Ropa y Accesorios</p>
+              <p className="text-gray-400">Ropa y Accesorios</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <PiArmchair className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <PiArmchair className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Hogar y Muebles</p>
+              <p className="text-gray-400">Hogar y Muebles</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <GiCarWheel className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <GiCarWheel className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Accesorios para vehículos</p>
+              <p className="text-gray-400">Accesorios para vehículos</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <BiSolidFridge className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <BiSolidFridge className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Electrodomésticos</p>
+              <p className="text-gray-400">Electrodomésticos</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <BsCamera className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <BsCamera className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Camaras y Accesorios</p>
+              <p className="text-gray-400">Camaras y Accesorios</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <GiSmartphone className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <GiSmartphone className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Celulares y Teléfonos</p>
+              <p className="text-gray-400">Celulares y Teléfonos</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <GiLipstick className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <GiLipstick className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Belleza y Cuidado </p>
+              <p className="text-gray-400">Belleza y Cuidado </p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <BiFootball className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <BiFootball className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Deportes y Fitness</p>
+              <p className="text-gray-400">Deportes y Fitness</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <AiOutlineAudio className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <AiOutlineAudio className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Electrónica, Audio y Video</p>
+              <p className="text-gray-400">Electrónica, Audio y Video</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <MdOutlineVideogameAsset className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <MdOutlineVideogameAsset className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Consolas y Videojuegos</p>
+              <p className="text-gray-400">Consolas y Videojuegos</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <TbHorseToy className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <TbHorseToy className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Juegos y Juguetes</p>
+              <p className="text-gray-400">Juegos y Juguetes</p>
             </div>
-            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200">
+            <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>
-                <AiOutlineTool className="w-[40px] h-[40px] mb-2 text-blue-400"  />
+                <AiOutlineTool className="w-[40px] h-[40px] mb-2 text-gray-400"/>
               </div>
-              <p>Herramientas</p>
+              <p className="text-gray-400">Herramientas</p>
             </div>
   
         

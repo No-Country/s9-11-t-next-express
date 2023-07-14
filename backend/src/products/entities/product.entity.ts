@@ -18,7 +18,18 @@ export class Product {
   description: string
 
   @Prop({ default: null })
-  characteristics: string
+  characteristics: string[]
+
+  @Prop({ default: 1 })
+  stock: number
+
+  //TODO: Create a separated entity for images
+  @Prop({ default: null })
+  images: string[]
+
+  //TODO: Create a separated entity for qualification
+  @Prop({ default: null })
+  qualification: number
 
   @Prop({
     default: true,

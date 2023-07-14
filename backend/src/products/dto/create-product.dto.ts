@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer'
 import {
+  IsArray,
   IsBoolean,
   IsMongoId,
   IsNotEmpty,
@@ -25,8 +26,19 @@ export class CreateProductDto {
   @IsString()
   description: string
 
-  @IsString()
-  characteristics: string
+  @IsArray()
+  @IsString({ each: true })
+  characteristics: string[]
+
+  @IsArray()
+  @IsString({ each: true })
+  images: string[]
+
+  @IsNumber()
+  stock: number
+
+  @IsNumber()
+  qualification: number
 
   @IsOptional()
   @IsBoolean()

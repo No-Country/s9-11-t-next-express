@@ -31,4 +31,32 @@
 | avatar   | String                 | NO       | https://ui-avatars.com/api/?name=name+lastname |
 | active   | Boolean                | NO       | true                                           |
 
+ <hr/>
+
+## Product
+
+|    TYPE    |     DETAIL     |     ENDPOINT     |                                     DATA                                     |
+| :--------: | :------------: | :--------------: | :--------------------------------------------------------------------------: |
+|  **POST**  | create product |  **products/**   |         body: { name, price, id_user, id_category, id_subcategory }          |
+|  **GET**   |  all products  |  **products/**   |                                                                              |
+|  **GET**   | product by id  | **products/:id** |                                params: { id }                                |
+| **PATCH**  | product by id  | **products/:id** | params: { id }, body: {(Product Schema data or file to update images field)} |
+| **DELETE** | product by id  | **products/:id** |                                params: { id }                                |
+
+### Product Schema
+
+| KEY             | TYPE                  | REQUIRED | DEFAULT |
+| --------------- | --------------------- | -------- | ------- |
+| name            | String                | YES      | -       |
+| price           | Number                | YES      | -       |
+| description     | String                | NO       | null    |
+| characteristics | String[]              | NO       | null    |
+| stock           | Number                | NO       | 1       |
+| images          | String[]              | NO       | null    |
+| qualification   | Number                | NO       | null    |
+| active          | Boolean               | NO       | true    |
+| id_user         | ObjectId(User)        | YES      | -       |
+| id_category     | ObjectId(Category)    | YES      | -       |
+| id_subcategory  | ObjectId(Subcategory) | YES      | -       |
+
 <hr/>

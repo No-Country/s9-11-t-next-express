@@ -30,8 +30,11 @@ export class ProductsService {
   }
 
   async findOne(id: string) {
-    const product = await this.ProductModel.findById(id)
+    const product = await this.ProductModel.findById(id).populate(
+      'id_user id_category id_subcategory',
+    )
     if (!product) throw new NotFoundException('Product does not exist!')
+
     return product
   }
 

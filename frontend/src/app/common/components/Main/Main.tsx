@@ -385,10 +385,12 @@ export default function Main() {
               <p className="text-gray-400">Camaras y Accesorios</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
-              <div>
+              <Link href={"/pages/products"}>
+              <div className="flex justify-center items-center">
                 <GiSmartphone className="w-[40px] h-[40px] mb-2 text-gray-400" />
               </div>
               <p className="text-gray-400">Celulares y Teléfonos</p>
+              </Link>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-300 cursor-pointer">
               <div>

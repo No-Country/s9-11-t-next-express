@@ -1,11 +1,17 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
 import * as bcrypt from 'bcrypt'
+import { ApiProperty } from '@nestjs/swagger'
 
 export type UserDocument = User & Document
 
 @Schema()
 export class User extends Document {
+  @ApiProperty({
+    type: String,
+    description: 'name',
+    required: true,
+  })
   @Prop({
     index: true,
     required: true,
@@ -13,6 +19,11 @@ export class User extends Document {
   })
   name: string
 
+  @ApiProperty({
+    type: String,
+    description: 'lastname',
+    required: true,
+  })
   @Prop({
     index: true,
     required: true,
@@ -20,6 +31,11 @@ export class User extends Document {
   })
   lastname: string
 
+  @ApiProperty({
+    type: String,
+    description: 'email',
+    required: true,
+  })
   @Prop({
     unique: true,
     index: true,
@@ -28,22 +44,45 @@ export class User extends Document {
   })
   email: string
 
+  @ApiProperty({
+    type: String,
+    description: 'password',
+    required: true,
+  })
   @Prop({
     select: false,
     required: true,
   })
   password: string
 
+  @ApiProperty({
+    type: String,
+    description: 'address',
+    required: false,
+    default: null,
+  })
   @Prop({
     default: null,
   })
   address: string
 
+  @ApiProperty({
+    type: String,
+    description: 'phone',
+    required: false,
+    default: null,
+  })
   @Prop({
     default: null,
   })
   phone: string
 
+  @ApiProperty({
+    type: String,
+    description: 'username',
+    required: false,
+    default: '[autogenerate by name, lastname, Math.random()]',
+  })
   @Prop({
     default: function () {
       if (this.name && this.lastname)
@@ -55,6 +94,13 @@ export class User extends Document {
   })
   username: string
 
+  @ApiProperty({
+    type: String,
+    description:
+      'avatar url obtained by cloudinary after uploading file. Default: avatar obtained by https://ui-avatars.com/api',
+    required: false,
+    default: 'https://ui-avatars.com/api/?name=[name]+[lastname]',
+  })
   @Prop({
     default: function () {
       return `https://ui-avatars.com/api/?name=${this.name}+${this.lastname}`
@@ -62,11 +108,24 @@ export class User extends Document {
   })
   avatar: string
 
+  @ApiProperty({
+    type: String,
+    description: 'status',
+    required: false,
+    default: 'true',
+  })
   @Prop({
     default: true,
   })
   active: boolean
 
+  @ApiProperty({
+    type: String,
+    description: 'user rol',
+    enum: ['buyer', 'seller'],
+    required: false,
+    default: 'buyer',
+  })
   @Prop({ enum: ['buyer', 'seller'], default: 'buyer' })
   rol: string
 

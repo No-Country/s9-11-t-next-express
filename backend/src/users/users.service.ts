@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common'
 import { CreateUserDto } from './dto/create-user.dto'
@@ -91,10 +92,10 @@ export class UsersService {
   }
 
   async remove(id: string) {
-    const userFind = await this.UserModel.findById(id)
-    if (userFind) {
-      userFind.active = false
-      await userFind.save()
+    const userFound = await this.userFound(id)
+    if (userFound) {
+      userFound.active = false
+      await userFound.save()
     }
     return { msg: `Deleted User - Inactive User` }
   }
@@ -116,6 +117,12 @@ export class UsersService {
   private getJwtToken(payload: JwtPayloadI) {
     const token = this.jwtService.sign(payload)
     return token
+  }
+
+  async userFound(id: string) {
+    const user = await this.UserModel.findById(id)
+    if (!user) throw new NotFoundException('Following user not found')
+    return user
   }
 
   private handleExceptions(error: any) {

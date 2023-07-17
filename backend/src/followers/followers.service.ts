@@ -2,21 +2,25 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common'
-import { CreateFollowerDto } from './dto/create-follower.dto'
-import { Follower } from './entities/follower.entity'
 import { Model } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose'
+import { CreateFollowerDto } from './dto/create-follower.dto'
+import { Follower } from './entities/follower.entity'
+import { UsersService } from 'src/users/users.service'
 
 @Injectable()
 export class FollowersService {
   constructor(
     @InjectModel(Follower.name)
     private readonly FollowerModel: Model<Follower>,
+    private readonly UserService: UsersService,
   ) {}
   async create(currentUser: string, createFollowerDto: CreateFollowerDto) {
     const { follower_id, following_id } = createFollowerDto
 
+    await this.userFound(following_id)
     if (currentUser !== follower_id)
       throw new BadRequestException('Invalid Follower')
     if (following_id === follower_id)
@@ -69,6 +73,12 @@ export class FollowersService {
     } catch (error) {
       this.handleExceptions(error)
     }
+  }
+
+  private async userFound(id: string) {
+    const userFollowing = await this.UserService.userFound(id)
+    if (!userFollowing) throw new NotFoundException('Following user not found')
+    return userFollowing
   }
 
   private handleExceptions(error: any): void {

@@ -1,10 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { ApiProperty } from '@nestjs/swagger'
 import { Document, SchemaTypes } from 'mongoose'
 
 export type FollowerDocument = Follower & Document
 
 @Schema()
 export class Follower extends Document {
+  @ApiProperty({
+    type: String,
+    description: 'ID of the follower | ref: User',
+    required: true,
+    format: 'ObjectId',
+    example: '60e8a37134f59e001fde6c48',
+  })
   @Prop({
     type: SchemaTypes.ObjectId,
     ref: 'User',
@@ -13,6 +21,14 @@ export class Follower extends Document {
   })
   follower_id: string
 
+  @ApiProperty({
+    type: String,
+    description: 'ID of the follower | ref: User',
+    required: true,
+    uniqueItems: true,
+    format: 'ObjectId',
+    example: '64af71c34bb78ce4561e0908',
+  })
   @Prop({
     type: SchemaTypes.ObjectId,
     ref: 'User',

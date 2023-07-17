@@ -6,6 +6,9 @@ import { UsersModule } from './users/users.module'
 import { MongooseModule } from '@nestjs/mongoose'
 import { CloudinaryModule } from './cloudinary/cloudinary.module'
 import { FollowersModule } from './followers/followers.module'
+import { CategoriesModule } from './categories/categories.module'
+import { SubcategoriesModule } from './subcategories/subcategories.module'
+import { ProductsModule } from './products/products.module'
 
 @Module({
   imports: [
@@ -14,6 +17,9 @@ import { FollowersModule } from './followers/followers.module'
     UsersModule,
     CloudinaryModule,
     FollowersModule,
+    CategoriesModule,
+    SubcategoriesModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

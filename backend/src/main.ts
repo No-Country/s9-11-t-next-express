@@ -13,6 +13,13 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   )
+  app.enableCors({
+    credentials: true,
+    origin:
+      process.env.NODE_ENV === 'production'
+        ? process.env.CLIENT_URL
+        : process.env.DEV_CLIENT_URL,
+  })
 
   SwaggerModuleRun(app)
 

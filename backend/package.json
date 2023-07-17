@@ -92,5 +92,8 @@
     "backend/src/*.(js|ts)": [
       "yarn lint"
     ]
+  },
+  "engines": {
+    "node": ">=14.20.1"
   }
 }

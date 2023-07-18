@@ -1,10 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import mongoose, { HydratedDocument } from 'mongoose'
+import mongoose, { HydratedDocument, SchemaTypes } from 'mongoose'
 import { Category } from 'src/categories/entities/category.entity'
 import { Subcategory } from 'src/subcategories/entities/subcategory.entity'
 import { User } from 'src/users/entities/user.entity'
+import { Image, ImageDocument } from '../../images/entities/image.entity';
 
-export type ProductDocument = HydratedDocument<Product>
+export type ProductDocument = HydratedDocument<Product & Document>
 
 @Schema({ timestamps: true })
 export class Product {
@@ -24,8 +25,10 @@ export class Product {
   stock: number
 
   //TODO: Create a separated entity for images
-  @Prop({ default: null })
-  images: string[]
+  // @Prop({ default: null })
+  // images: string[]
+  @Prop({ type: [{ type: SchemaTypes.ObjectId, ref: 'Image' }] })
+  images: ImageDocument[];
 
   //TODO: Create a separated entity for qualification
   @Prop({ default: null })

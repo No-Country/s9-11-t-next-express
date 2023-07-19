@@ -42,6 +42,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { usePathname, useRouter } from "next/navigation";
 // import "swiper";
+import DropdownUser from './components/dropdown_user';
 
 
   // const images: Array<string> = ["clon_mercadolibre.jpg", "otro.jpg", "main_cocina.jpg", "main_tecnologia.jpg"]
@@ -102,7 +103,7 @@ export default function Main() {
                 disableOnInteraction: false,
               }}
             >
-            <div className="flex flex-col items-end">
+            {/* <div className="flex flex-col items-end">
               <div id="user-dropdown" className=" z-10 bg-white  mr-[352px] -mt-[250px] shadow-md hidden hover:bg-blue-500">
                 <ul className="flex justify-start items-start text-left hover:bg-blue-500">
                     {
@@ -116,8 +117,8 @@ export default function Main() {
                     }
                 </ul>
               </div>
-            </div>
-             
+            </div> */}
+             <DropdownUser userMenu={userMenu} deleteToken={deleteToken}/>
               <SwiperSlide>
                 <div className="flex justify-center bg-black">
                   <Image
@@ -428,7 +429,7 @@ export default function Main() {
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <Link href={"/pages/products"}>
-              <div>
+              <div className='flex justify-center'>
                 <GiSmartphone className="w-[40px] h-[40px] mb-2 text-gray-500"/>
               </div>
               <p className="text-gray-500">Celulares y Teléfonos</p>

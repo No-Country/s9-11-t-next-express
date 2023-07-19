@@ -10,6 +10,7 @@ import { CategoriesModule } from './categories/categories.module'
 import { SubcategoriesModule } from './subcategories/subcategories.module'
 import { ProductsModule } from './products/products.module'
 import { ReviewsModule } from './reviews/reviews.module'
+import { LikesModule } from './likes/likes.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ReviewsModule } from './reviews/reviews.module'
     SubcategoriesModule,
     ProductsModule,
     ReviewsModule,
+    LikesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

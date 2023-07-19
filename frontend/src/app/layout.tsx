@@ -2,6 +2,7 @@ import './globals.css'
 import Header from './common/components/Header'
 import FooterDesktop from './common/components/Footer/FooterDesktop'
 import FooterMobile from './common/components/Footer/FooterMobile'
+import { usePathname } from 'next/navigation'
 
 export const metadata = {
   title: 'Mercado Libre',

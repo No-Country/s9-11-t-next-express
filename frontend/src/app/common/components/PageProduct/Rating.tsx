@@ -4,7 +4,11 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
-export default function BasicRating(props) {
+type Props = {
+  stars: number 
+} 
+
+export default function BasicRating(props: Props) {
 
    
   const [value, setValue] = React.useState<number | null>(props.stars);

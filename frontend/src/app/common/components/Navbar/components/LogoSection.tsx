@@ -1,4 +1,11 @@
+"use client"
+
+import { usePathname } from "next/navigation"
+
+
 export default function LogoSection() {
+    const pathname = usePathname();
+
     return (
         <div className="flex items-center">
             <a href="">

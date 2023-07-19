@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Slide } from "react-slideshow-image";
-import Slideshow from "./Slides";
+// import Slideshow from "./Slides/";
 import PrimaryButton from "../Buttom/PrimaryButton";
 import SecondaryButton from "../Buttom/SecondaryButton";
 import BasicRating from "./Rating";
@@ -223,7 +223,7 @@ export default function PageProduct() {
               </span>
             </div>
             <div className="mt-5 ml-2 mr-2 mb-4">
-              <p className="text-verde-meli " href="">
+              <p className="text-verde-meli " >
                 {" "}
                 Llega gratis el Sabado
               </p>
@@ -493,7 +493,7 @@ export default function PageProduct() {
       </div>
 
       <div>
-        <div className="pl-11 pr-11 flex flex-col bg-white rounded-md pr-4 h-auto">
+        <div className="pl-11 pr-11 flex flex-col bg-white rounded-md h-auto">
           {/* soy preguntas */}
 
           <h2>Preguntas y respuestas</h2>

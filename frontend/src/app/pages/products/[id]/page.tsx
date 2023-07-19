@@ -1,19 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
-
+"use client"
 import React from "react";
 import { Slide } from "react-slideshow-image";
-// import Slideshow from "./Slides/";
-import PrimaryButton from "../Buttom/PrimaryButton";
-import SecondaryButton from "../Buttom/SecondaryButton";
-import BasicRating from "./Rating";
-import { useRouter } from "next/router";
+// import Slideshow from "./Slides";
+import PrimaryButton from "../../../common/components/Buttom/PrimaryButton";
+import SecondaryButton from "../../../common/components/Buttom/SecondaryButton";
+import BasicRating from "../../../common/components/PageProduct/Rating";
+// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Phone from "../../../../../public/phone.png";
+import {MdFavorite} from "react-icons/md";
+import Link from "next/link";
 
 
 export default function PageProduct() {
 
   const router = useRouter();
-  const { id } = router.query;
-  console.log(id)
+  // const { id } = router.query;
+  // console.log(id)
 
   const propsProduc = {
     title:
@@ -49,11 +54,13 @@ export default function PageProduct() {
     category: "MercadoLíder",
   };
   return (
-    <div className="w-[1200px] h-auto">
+    <div className="w-[1200px] h-auto mx-auto">
       {/* tambien te puede interesar */}
       <div className="flex  justify-between h-auto- w-auto">
         <div className=" flex flex-col ">
+
           <div className=" flex flex-row mb-4 mt-4">
+      
             <ul className="flex flex-row gap-4">
               <li>También puede interesarte </li>
               <li>
@@ -169,8 +176,59 @@ export default function PageProduct() {
         <div className="flex flex-col">
           {/* soy el producto */}
           <div className=" flex flex-row h-auto">
-            <section className="w-[486px] pl-4 mt-10">slider</section>
-            <section className="w-[341px] mr-8  mt-10">
+
+            <section className="w-[530px] pl-4 mt-10 flex flex-col ">
+              <div className="flex flex-col sticky top-0">
+               <div className="flex flex-row  ">
+
+                <div className="w-[120px]">
+                  <ul>
+                    <li className="border border-gray-300 hover:border-black cursor-pointer">
+                    <Image 
+                    src={Phone}
+                    alt="detail-image"
+                    width={400}
+                    height={250}
+                  />
+                    </li>
+                    <li className="border border-gray-300 hover:border-black cursor-pointer mt-2">
+                    <Image 
+                    src={Phone}
+                    alt="detail-image"
+                    width={400}
+                    height={250}
+                  />
+                    </li>
+                    <li className="border border-gray-300 hover:border-black cursor-pointer mt-2">
+                    <Image 
+                    src={Phone}
+                    alt="detail-image"
+                    width={400}
+                    height={250}
+                  />
+                    </li>
+                  </ul>
+
+                </div>
+                <div className="w-[980px] h-[400px] mb-[100px]">
+                  <Image 
+                    src={Phone}
+                    alt="detail-image"
+                    width={5000}
+                    height={1000}
+                  />
+                </div>
+                </div>
+                <div className="text-sm flex flex-row  justify-center items-center mb-24 -mt-5 ">
+                  <MdFavorite className="text-red-500 h-6 w-6"/>&nbsp;&nbsp;
+                  <span> Le gusta a </span>&nbsp;
+                  <Link href={``} className="text-blue-400">
+                    juliarodriguez, pedrotheret y 300 personas más
+                  </Link>
+                </div>
+            </div>
+            </section>
+            <section className="w-[297px] mt-10">
               <div>
                 <p className="text-vendidos">Nuevo | +1000 vendidos</p>
                 <h2 className="w-[340px] text-2xl">{propsProduc.title}</h2>
@@ -208,7 +266,9 @@ export default function PageProduct() {
               </div>
             </section>
           </div>
-          <div>Soy la linea separadora</div>
+          {/* <div>Soy la linea separadora</div> */}
+          <br />
+          <hr />
           <div className="pl-12 pr-12 text-xl mt-12">
             <div>
               <p>Descripción</p>
@@ -230,8 +290,7 @@ export default function PageProduct() {
               </span>
             </div>
             <div className="mt-5 ml-2 mr-2 mb-4">
-
-              <p className="text-verde-meli" >
+              <p className="text-verde-meli ">
                 {" "}
                 Llega gratis el Sabado
               </p>
@@ -502,7 +561,7 @@ export default function PageProduct() {
 
       <div>
         {/* <div className="pl-11 pr-11 flex flex-col bg-white rounded-md pr-4 h-auto"> */}
-        <div className="pl-11 flex flex-col bg-white rounded-md pr-4 h-auto">
+        <div className="pl-11  flex flex-col bg-white rounded-md pr-4 h-auto">
           {/* soy preguntas */}
 
           <h2>Preguntas y respuestas</h2>
@@ -533,7 +592,6 @@ export default function PageProduct() {
               </ul>
             </div>
           </div>
-          <div>hola</div>
         </div>
         <div>soy recomendaciones</div>
       </div>

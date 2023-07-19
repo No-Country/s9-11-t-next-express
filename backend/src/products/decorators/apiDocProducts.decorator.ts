@@ -1,13 +1,13 @@
 import { applyDecorators } from '@nestjs/common'
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiParam, ApiResponse, getSchemaPath } from '@nestjs/swagger'
 import { Product } from '../entities/product.entity'
-import { UpdateProductDto } from '../dto/update-product.dto'
+// import { UpdateProductDto } from '../dto/update-product.dto'
 import { CreateProductDto } from '../dto/create-product.dto'
 
 export function ApiCreateProduct() {
     return applyDecorators(
         ApiOperation({ operationId: 'CreateProduct' }),
-        ApiConsumes('multipart/form-data', 'application/json'),
+        ApiConsumes('application/json', 'multipart/form-data'),
         ApiParam({
             name: 'id_user',
             type: 'string',

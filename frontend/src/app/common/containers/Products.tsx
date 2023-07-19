@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useFetch, { fetchData, useGetProducts } from "../../../slice/productSlice";
 import Product from '../components/Product/Product';
+import Link from 'next/link';
 
 interface ProductData {
   _id: string;
@@ -50,7 +51,7 @@ export default async function Products() {
       <div className=" max-w-[1200px] m-8 flex flex-wrap ">
        {product.map((productos) => (
         
-
+        
         <Product key={productos._id} product={productos} />
       
       ))}

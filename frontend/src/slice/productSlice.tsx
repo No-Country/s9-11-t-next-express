@@ -27,7 +27,7 @@ interface ProductData {
 
   export const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/meliclon/v1/products');
+      const response = await axios.get('https://meliclon-social-api-nc.onrender.com/api/meliclon/v1/products');
       const data = await response.data;
       console.log(data)
       return data

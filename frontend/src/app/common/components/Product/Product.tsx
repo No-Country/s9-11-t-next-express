@@ -1,18 +1,18 @@
 import React from "react";
-import { ProductData } from "../types";
+import { ProductData } from '../types';
 import Link from "next/link";
 
-// interface ProductProps {
-//     product: ProductData;
-//   }
+interface ProductProps {
+    product: ProductData;
+  }
 
 //   const Product: React.FC<ProductProps> = ({ product }) => {
 
-export default function Product({ product }) {
+export default function Product({ product  }) {
   const truncatedPrice = (product.price / 9).toFixed(2);
   return (
-    <div className="max-w-[250px] rounded-3xl m-5">
-      <Link href={`/pages/product/${product._id}`}>
+    <div className="max-w-[250px] rounded-3xl m-5 bg-white">
+      <Link href={`/pages/products/${product._id}`}>
         <div className="rounded-3xl">
           <img
             className="w-[300px] h-[282px] rounded-t-lg"
@@ -30,5 +30,6 @@ export default function Product({ product }) {
         </div>
       </Link>
     </div>
+    // <h1>HOla</h1>
   );
 }

@@ -35,7 +35,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/app/pages/product/[productId].js"  ],
   "exclude": [
     "node_modules"
   ]

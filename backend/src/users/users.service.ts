@@ -121,7 +121,7 @@ export class UsersService {
 
   async userFound(id: string) {
     const user = await this.UserModel.findById(id)
-    if (!user) throw new NotFoundException('Following user not found')
+    if (!user) throw new NotFoundException('User not found')
     return user
   }
 

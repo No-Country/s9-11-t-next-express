@@ -21,3 +21,12 @@ export interface ExpressSwaggerCustomOptionsI {
 
 export const APIDOC_ROUTE = 'api/doc'
 export const API_ROUTE = 'api/meliclon/v1/'
+
+export enum SCHEMAS_CSS {
+  user = '#model-User',
+  follower = '#model-Follower',
+  products = '#model-Product',
+  category = '#model-Category',
+  subcategory = '#model-Subcategory',
+  reviews = '#model-Review',
+}

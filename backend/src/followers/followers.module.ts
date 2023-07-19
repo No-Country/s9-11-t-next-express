@@ -20,5 +20,6 @@ import { CloudinaryModule } from 'src/cloudinary/cloudinary.module'
     UsersModule,
     CloudinaryModule,
   ],
+  exports: [MongooseModule],
 })
 export class FollowersModule {}

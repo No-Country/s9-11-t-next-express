@@ -1,10 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
 import * as bcrypt from 'bcrypt'
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiProperty, ApiTags } from '@nestjs/swagger'
 
 export type UserDocument = User & Document
 
+@ApiTags('Users')
 @Schema()
 export class User extends Document {
   @ApiProperty({

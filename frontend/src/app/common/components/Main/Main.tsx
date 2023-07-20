@@ -48,7 +48,7 @@ import DropdownUser from './components/dropdown_user';
   // const images: Array<string> = ["clon_mercadolibre.jpg", "otro.jpg", "main_cocina.jpg", "main_tecnologia.jpg"]
 
 export default function Main() {
-  const userMenu: string[] = ['Salir']
+  const userMenu: object[] = [{id: 1, text: 'Salir'}];
   let [user, setUser ] = useState([])
   let [isLogged, setIsLogged ] = useState(false)
   let router = useRouter();
@@ -60,8 +60,6 @@ export default function Main() {
   const deleteToken = () => {
     setUser([]);
     setIsLogged(false)
-    console.log(user);
-    console.log(isLogged);
     localStorage.clear();
     // router.push('/')
     location.reload()

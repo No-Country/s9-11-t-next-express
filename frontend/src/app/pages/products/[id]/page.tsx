@@ -17,7 +17,7 @@ import Link from "next/link";
 export default function PageProduct() {
 
   const router = useRouter();
-  // const { id } = router.query;
+  // const  id  = router.query.id;
   // console.log(id)
 
   const propsProduc = {

@@ -11,11 +11,12 @@ import {AiOutlineUser} from "react-icons/ai";
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import axios from "axios";
+import mercado from "../../../../../public/icon_ml_mobile.png";
 
 function Login(): ReactElement {
 
 const pathname = usePathname();
-const [email, setEmail ]= useState("");
+// const [email, setEmail ]= useState("");
 const [password, setPassword ]= useState("");
 const router = useRouter();
 const [errors, setErrors] = useState({
@@ -71,12 +72,16 @@ function validate(input: Errors): SetStateAction<any> {
 const handleDelete = ()=> {
   setOk(false);
   const chip = document.querySelector("#chip") as HTMLDivElement;
+  const email = document.querySelector("#email") as HTMLInputElement;
   const label = document.querySelector("#label") as HTMLLabelElement;
-  const but = document.querySelector("#continue") as HTMLButtonElement;
+  // const but = document.querySelector("#continue") as HTMLButtonElement;
   const response = document.querySelector("#login") as HTMLParagraphElement;
-
-  but.innerText = 'Continuar';
+  const password = document.querySelector("#password") as HTMLInputElement;
+  const inside = document.querySelector("#inside") as HTMLDivElement;
+  inside.innerText = 'Continuar';
   chip.setAttribute('class', 'hidden ');
+  password.setAttribute('class', 'hidden');
+  email.setAttribute('class', 'border rounded border-gray-200 w-[300px] h-10 py-6');
   label.innerText = 'Teléfono, e-mail o usuario';
   response.innerText = "";
 
@@ -88,16 +93,21 @@ const continueProcess = (e: any) => {
     setOk(true);
     const chip = document.querySelector("#chip") as HTMLDivElement;
     const email = document.querySelector("#email") as HTMLInputElement;
-    const but = document.querySelector("#continue") as HTMLButtonElement;
+    const inside = document.querySelector("#inside") as HTMLDivElement;
+    const password = document.querySelector("#password") as HTMLInputElement;
+    // const but = document.querySelector("#continue") as HTMLButtonElement;
     const label = document.querySelector("#label") as HTMLLabelElement;
-    but.innerText = 'Ingresar';
+    inside.setAttribute('class', '')
+    inside.innerHTML = 'Ingresar';
     label.innerText = 'Contraseña';
     chip.setAttribute('class', 'mt-3');
-    email?.setAttribute('class', 'hidden')
+    email.setAttribute('class', 'hidden')
+    password.setAttribute('class', 'border rounded border-gray-200 w-[300px] h-10 py-6 ')
 
-  } else {
-    setOk(false);
-  }
+  } 
+  // else {
+  //   setOk(false);
+  // }
 
   
 }
@@ -157,33 +167,32 @@ function handleInput(e?: any): boolean {
 
 const login = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
   e.preventDefault();
-
+  const inside = document.querySelector("#inside") as HTMLDivElement;
+  const but = document.querySelector("#continue") as HTMLButtonElement;
+  but.setAttribute('class', 'bg-blue-300 py-4 rounded-md px-11 mt-4 text-white font-semibold disabled')
+  inside.innerHTML = ''
+  inside.setAttribute('class', 'h-6 w-6 mt-[1px] border-4 border-gray-400 border-t-white animate-spin rounded-full mx-auto')
   const user =   {
     "email":input.name,
     "password": input.password
   }
   console.log(`${user.email}, ${user.password} si`);
-  
   axios.post('https://meliclon-social-api-nc.onrender.com/api/meliclon/v1/users/login', user)
   .then(res => {   
-    console.log(res);
     if (res.data.token) {
-      localStorage.setItem('token', JSON.stringify(res.data.token));
-      localStorage.setItem('email', email);
-      // location.replace('/')
+      localStorage.setItem('token', JSON.stringify(res.data));
       router.push('/')
       } 
       else {
         return
-        console.log('si');
     }
     }).catch((err) => {
-      console.log('err');
-      
-        console.log(user.email);
-        console.log(user.password);
       const response = document.querySelector("#login") as HTMLParagraphElement;
       response.innerText = err.response.data.message;
+      but.setAttribute('class', 'bg-blue-500 py-4 rounded-md px-11 mt-4 text-white font-semibold')
+      inside.setAttribute('class', 'mb-1')
+      inside.innerHTML = 'Ingresar'
+      setOk(true)
       console.log(err);
       
     })
@@ -201,15 +210,14 @@ const login = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         <form action="" className="flex justify-center flex-col ">
         <div id="chip" className="hidden">
                   <Stack direction="row" spacing={1}>
-                    <Chip label={input?.name} onDelete={handleDelete} />
+                    <Chip label={input.name} onDelete={handleDelete} />
                   </Stack>
                 </div>
           <label id="label" htmlFor="email" className="flex justify-start items-start mt-4">
             Teléfono, e-mail o usuario
           </label>
 
-          {
-              ok === false? 
+
               <input 
                 type="email"
                 id="email" 
@@ -220,37 +228,36 @@ const login = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
                 className='border rounded border-gray-200 w-[300px] h-10 py-6 ' 
                 placeholder="ej. example@gmail.com"
               />
-              
-  
-              :
-               false
-                
-          }
-          {
-              ok === true? 
-              <>
+
+
               <input 
                 type="password"
                 id="password" 
                 name="password" 
                 value={input?.password}
                 onChange={handleInput}
-                className='border rounded border-gray-200 w-[300px] h-10 py-6 ' 
+                // className='border rounded border-gray-200 w-[300px] h-10 py-6 ' 
+                className="hidden"
                 placeholder="Escribe la contraseña"
               />
               <p id="login" className="text-red-500 text-xs"></p>
-              </>
-              :
-               false
-                
-          }
+
 
             {
               errors.name? (<p className='text-red-400'>{errors.name }</p>) : false
             
             }
-          <button id="continue" onClick={ok === false? continueProcess: (e) => login(e)} className=" bg-blue-500 py-4 rounded-md px-11 mt-4 text-white font-semibold"  >
+          {/* <button 
+            id="continue" 
+            onClick={ok === false? continueProcess: (e) => login(e)} 
+            className="bg-blue-500 py-4 rounded-md px-11 mt-4 text-white font-semibold">
             Continuar
+          </button> */}
+          <button 
+            id="continue" 
+            onClick={ok === false? continueProcess: (e) => login(e)} 
+            className="bg-blue-500 py-4 rounded-md px-11 mt-4 text-white font-semibold">
+            <div id="inside" className="mb-1">Continuar</div>
           </button>
           <Link href={'/common/components/register'} className="text-blue-500 font-bold text-center mt-4 text-mg pb-12">Crear cuenta</Link>
 

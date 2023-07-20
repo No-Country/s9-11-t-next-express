@@ -1,11 +1,12 @@
 import Link from "next/link"
 import { useEffect, useState, ReactNode } from 'react';
 import {BiSolidDownArrow} from "react-icons/bi";
+import {AiOutlineUser} from "react-icons/ai";
 
 
-export default function UserSection() {
+export default function UserSection(): ReactNode {
     let [email, setEmail ] = useState("")
-    let [user, setUser ] = useState([])
+    let [user, setUser ] = useState({})
     let [isLogged, setIsLogged ] = useState(false)
     const [dropdown, setDropdown] = useState(false);
 
@@ -28,7 +29,7 @@ export default function UserSection() {
     }
   
     const deleteToken = (user?: any)  => {
-      setUser([]);
+      setUser({});
       setIsLogged(false)
       const val: void = localStorage.removeItem(user);
     }
@@ -36,9 +37,9 @@ export default function UserSection() {
     function existeUsuario(): any {
         if(JSON.parse(localStorage.getItem('token') as string) !== null){
         setIsLogged(true)
-        setEmail(localStorage.getItem('email') as string)
         user = JSON.parse(localStorage.getItem('token') as string);
         console.log(user);
+        setUser(user)
 
         }
     }
@@ -58,7 +59,7 @@ export default function UserSection() {
   
     const cerrarSesion = () => {
       // e.preventDefault();
-      setUser([]);
+      setUser({});
       localStorage.clear();
     }
     return (
@@ -78,7 +79,8 @@ export default function UserSection() {
                         </DropdownMenu>
                     </Dropdown> */}
                     <div onClick={toggleDropDown} className="flex flex-row justify-evenly items-center cursor-pointer">
-                        <p>Santiago Rueda</p>
+                        <AiOutlineUser className="mr-1 border border-gray-500 rounded-full" size={15}/>
+                        <p>{user["email"]? user["email"].slice(0,10) + "..." : "loading..."}</p>
                         <BiSolidDownArrow className="ml-1" size={10}/>
                     </div>
                     {/* <div className="flex flex-col">

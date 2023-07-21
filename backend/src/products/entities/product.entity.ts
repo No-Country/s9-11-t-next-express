@@ -3,7 +3,7 @@ import mongoose, { HydratedDocument, SchemaTypes } from 'mongoose'
 import { Category } from 'src/categories/entities/category.entity'
 import { Subcategory } from 'src/subcategories/entities/subcategory.entity'
 import { User } from 'src/users/entities/user.entity'
-import { Image, ImageDocument } from '../../images/entities/image.entity';
+import { Image, ImageDocument } from './image.entity';
 
 export type ProductDocument = HydratedDocument<Product & Document>
 

@@ -9,7 +9,6 @@ import { FollowersModule } from './followers/followers.module'
 import { CategoriesModule } from './categories/categories.module'
 import { SubcategoriesModule } from './subcategories/subcategories.module'
 import { ProductsModule } from './products/products.module'
-import { ImagesModule } from './images/images.module';
 import { ReviewsModule } from './reviews/reviews.module'
 
 @Module({
@@ -22,7 +21,6 @@ import { ReviewsModule } from './reviews/reviews.module'
     CategoriesModule,
     SubcategoriesModule,
     ProductsModule,
-    ImagesModule,
     ReviewsModule,
   ],
   controllers: [AppController],

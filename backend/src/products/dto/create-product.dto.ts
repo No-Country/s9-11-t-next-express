@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import {
   IsArray,
@@ -30,6 +31,13 @@ export class CreateProductDto {
   @IsString({ each: true })
   characteristics: string[]
 
+  @ApiProperty({
+    type: String,
+    description:
+      'avatar url obtained by cloudinary after uploading file. Default: avatar obtained by https://ui-avatars.com/api',
+    required: false,
+    default: 'https://ui-avatars.com/api/?name=[name]+[lastname]',
+  })
   @IsArray()
   @IsString({ each: true })
   images: string[]

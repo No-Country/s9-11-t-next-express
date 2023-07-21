@@ -21,8 +21,12 @@ export class LikesController {
   }
 
   @Get('product/:productId')
-  findLikesByProductId(@Param('productId') productId: string) {
-    return this.likesService.getLikesByProductId(productId)
+  @Auth()
+  findLikesByProductId(
+    @GetUser() user: User,
+    @Param('productId') productId: string,
+  ) {
+    return this.likesService.getLikesByProductId(user.id, productId)
   }
 
   @Get('user/current')

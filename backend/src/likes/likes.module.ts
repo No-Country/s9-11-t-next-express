@@ -8,6 +8,8 @@ import { ProductsModule } from 'src/products/products.module'
 import { UsersService } from 'src/users/users.service'
 import { ProductsService } from 'src/products/products.service'
 import { CloudinaryModule } from 'src/cloudinary/cloudinary.module'
+import { FollowersService } from 'src/followers/followers.service'
+import { FollowersModule } from 'src/followers/followers.module'
 
 @Module({
   imports: [
@@ -15,9 +17,10 @@ import { CloudinaryModule } from 'src/cloudinary/cloudinary.module'
     UsersModule,
     ProductsModule,
     CloudinaryModule,
+    FollowersModule,
   ],
   controllers: [LikesController],
-  providers: [LikesService, UsersService, ProductsService],
+  providers: [LikesService, UsersService, ProductsService, FollowersService],
   exports: [MongooseModule],
 })
 export class LikesModule {}

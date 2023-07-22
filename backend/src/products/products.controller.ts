@@ -12,12 +12,13 @@ import {
 import { ProductsService } from './products.service'
 import { CreateProductDto } from './dto/create-product.dto'
 import { UpdateProductDto } from './dto/update-product.dto'
-import { ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiConsumes, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { ApiCreateProduct, ApiFindProduct, ApiRemoveProduct } from './decorators/apiDocProducts.decorator'
 import { FileInterceptor } from '@nestjs/platform-express'
 
 
 @ApiTags('Products')
+@ApiConsumes('application/json', 'multipart/form-data')
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productService: ProductsService) {}

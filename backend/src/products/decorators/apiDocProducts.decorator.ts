@@ -1,13 +1,15 @@
-import { applyDecorators } from '@nestjs/common'
+import { UseInterceptors, applyDecorators } from '@nestjs/common'
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiParam, ApiResponse, getSchemaPath } from '@nestjs/swagger'
 import { Product } from '../entities/product.entity'
 // import { UpdateProductDto } from '../dto/update-product.dto'
 import { CreateProductDto } from '../dto/create-product.dto'
+import { FileInterceptor } from '@nestjs/platform-express'
 
 export function ApiCreateProduct() {
     return applyDecorators(
-        ApiOperation({ operationId: 'CreateProduct' }),
-        ApiConsumes('application/json', 'multipart/form-data'),
+        ApiOperation({ summary: 'CreateProduct' }),
+        ApiConsumes('multipart/form-data'),
+        UseInterceptors(FileInterceptor('file')),
         ApiParam({
             name: 'id_user',
             type: 'string',

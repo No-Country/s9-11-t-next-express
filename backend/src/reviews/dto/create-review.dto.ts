@@ -12,7 +12,7 @@ import {
 export class CreateReviewDto {
   @ApiProperty({
     type: String,
-    description: 'User ID | ref: User',
+    description: 'User ID (Auth) | ref: User',
     required: true,
     uniqueItems: true,
     format: 'ObjectId',
@@ -50,10 +50,10 @@ export class CreateReviewDto {
   @ApiProperty({
     type: String,
     description: 'comment',
-    required: true,
+    required: false,
     example: 'Excelente relación precio-calidad',
   })
   @IsOptional()
   @IsString()
-  comment: string
+  comment?: string
 }

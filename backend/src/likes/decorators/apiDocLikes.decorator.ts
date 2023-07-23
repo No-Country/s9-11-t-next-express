@@ -5,47 +5,43 @@ import {
   ApiResponse,
   getSchemaPath,
 } from '@nestjs/swagger'
-import { Review } from '../entities/review.entity'
+import { Like } from '../entities/like.entity'
 import { User } from 'src/users/entities/user.entity'
 
-export function ApiCreateReview() {
+export const ApiCreateLike = () => {
   return applyDecorators(
-    ApiOperation({ operationId: 'CreateReview' }),
+    ApiOperation({ operationId: 'FindFollowerCurrentUser' }),
     ApiBearerAuth(),
     ApiResponse({
       status: 200,
-      description: 'Review Creted',
-      type: Review,
-    }),
-    ApiResponse({
-      status: 404,
-      description: 'User not found',
+      description: 'data like. Ref: Like Schema',
+      type: Like,
     }),
     ApiResponse({
       status: 400,
-      description: 'Invalid User',
+      description: 'Duplicate likes: [UserId/ProductId]',
     }),
   )
 }
 
-export function ApiGetReviewByProductId() {
+export const ApiGetLikesByProductId = () => {
   return applyDecorators(
-    ApiOperation({ operationId: 'CreateReview' }),
+    ApiOperation({ operationId: 'FindLikesByProductId' }),
     ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description:
-        'Get all reviews data with data of users followed by current user.',
+        'Get all likes data with data of users followed by current user.',
       schema: {
         oneOf: [
           {
             type: 'object',
             properties: {
-              FollowingReviews: {
+              FollowingLikes: {
                 type: 'array',
                 items: {
                   type: 'object',
-                  $ref: getSchemaPath(Review),
+                  $ref: getSchemaPath(Like),
                 },
               },
             },
@@ -53,8 +49,8 @@ export function ApiGetReviewByProductId() {
           {
             type: 'object',
             properties: {
-              FollowingReviews: {
-                description: 'ref: Review Schema',
+              FollowingLikes: {
+                description: 'ref: Like Schema',
                 type: 'array',
                 items: {
                   type: 'object',
@@ -67,14 +63,6 @@ export function ApiGetReviewByProductId() {
                       type: 'string',
                       example: '64b08f8eeaa60839474369b7',
                     },
-                    stars: {
-                      type: 'number',
-                      example: '5',
-                    },
-                    comment: {
-                      type: 'string',
-                      example: 'Buena relación precio-calidad.',
-                    },
                   },
                 },
               },
@@ -86,22 +74,22 @@ export function ApiGetReviewByProductId() {
   )
 }
 
-export function ApiPatchReview() {
+export const ApiDeleteLikeByProductoId = () => {
   return applyDecorators(
-    ApiOperation({ operationId: 'CreateReview' }),
+    ApiOperation({ operationId: 'DeleteLikeByProductId' }),
     ApiBearerAuth(),
     ApiResponse({
-      status: 404,
-      description: 'Review-product not found',
-    }),
-    ApiResponse({
-      status: 400,
-      description: 'Invalid User',
-    }),
-    ApiResponse({
       status: 200,
-      description: 'Review Updated',
-      type: Review,
+      description:
+        'Removed like from user: [currentUserId] to product: [productId]',
+    }),
+    ApiResponse({
+      status: 404,
+      description: 'Product not found',
+    }),
+    ApiResponse({
+      status: 404,
+      description: 'User not found',
     }),
   )
 }

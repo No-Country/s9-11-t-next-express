@@ -37,12 +37,12 @@ export class ReviewsService {
   }
 
   async findOne(currentUserId: string, id: string) {
-    const findReview = await this.ReviewModel.find({ product_id: id })
-    const { following } = await this.FollowerService.getFollowingCurrentUser(
-      currentUserId,
-    )
-
     try {
+      const findReview = await this.ReviewModel.find({ product_id: id })
+      const { following } = await this.FollowerService.getFollowingCurrentUser(
+        currentUserId,
+      )
+
       const followingIds = []
 
       following.forEach((item) => {

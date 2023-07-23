@@ -5,7 +5,8 @@ import { UpdateReviewDto } from './dto/update-review.dto'
 import { User } from 'src/users/entities/user.entity'
 import { Auth, GetUser } from 'src/users/decorators'
 import {
-  ApiGetReview,
+  ApiCreateReview,
+  ApiGetReviewByProductId,
   ApiPatchReview,
 } from './decorators/apiDocReviews.decorator'
 import { ApiTags } from '@nestjs/swagger'
@@ -15,13 +16,14 @@ import { ApiTags } from '@nestjs/swagger'
 export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}
 
+  @ApiCreateReview()
   @Post()
   @Auth()
   create(@GetUser() user: User, @Body() createReviewDto: CreateReviewDto) {
     return this.reviewsService.create(user.id, createReviewDto)
   }
 
-  @ApiGetReview()
+  @ApiGetReviewByProductId()
   @Get(':productId')
   @Auth()
   findOne(@GetUser() user: User, @Param('productId') productId: string) {

@@ -13,7 +13,7 @@ const swaggerOptions: ExpressSwaggerCustomOptionsI = {
     ignoreGlobalPrefix: true,
     // defaultModelsExpandDepth: -1,
   },
-  customCss: `${SCHEMAS_CSS.user}, ${SCHEMAS_CSS.follower}, ${SCHEMAS_CSS.reviews} {  background-color: #B0A8B9 }`,
+  customCss: `${SCHEMAS_CSS.user}, ${SCHEMAS_CSS.follower}, ${SCHEMAS_CSS.reviews}, ${SCHEMAS_CSS.likes} {  background-color: #B0A8B9 }`,
 }
 const config = new DocumentBuilder()
   .setTitle('MeliClon-Social')

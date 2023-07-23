@@ -29,4 +29,5 @@ export enum SCHEMAS_CSS {
   category = '#model-Category',
   subcategory = '#model-Subcategory',
   reviews = '#model-Review',
+  likes = '#model-Like',
 }

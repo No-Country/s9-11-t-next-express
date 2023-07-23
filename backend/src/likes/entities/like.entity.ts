@@ -1,10 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import mongoose, { HydratedDocument } from 'mongoose'
+import { ApiProperty } from '@nestjs/swagger'
+import mongoose, { Document, HydratedDocument } from 'mongoose'
 
 export type LikesDocument = HydratedDocument<Like>
 
 @Schema()
-export class Like {
+export class Like extends Document {
+  @ApiProperty({
+    type: String,
+    description: 'Product ID | ref:Product',
+    required: true,
+    uniqueItems: true,
+    format: 'ObjectId',
+    example: '64af71c34bb78ce6531e0357',
+  })
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',
@@ -13,6 +22,14 @@ export class Like {
   })
   product_id: string
 
+  @ApiProperty({
+    type: String,
+    description: 'User ID | ref: User',
+    required: true,
+    uniqueItems: true,
+    format: 'ObjectId',
+    example: '64af71c34bb78ce4561e0908',
+  })
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

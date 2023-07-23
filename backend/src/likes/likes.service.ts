@@ -36,7 +36,7 @@ export class LikesService {
       const like = await this.LikeModel.create(createLikeDto)
       return like
     } catch (error) {
-      throw new InternalServerErrorException(`${error}`)
+      this.handleExceptions(error)
     }
   }
 
@@ -80,6 +80,8 @@ export class LikesService {
     await this.productFound(productId)
 
     try {
+      const getLikes = await this.LikeModel.find({ product_id: productId })
+
       const { following } = await this.FollowerService.getFollowingCurrentUser(
         currentUserId,
       )
@@ -91,10 +93,14 @@ export class LikesService {
         followingIds.push(id)
       })
 
-      const FollowingLikes = await this.LikeModel.find({
-        product_id: productId,
-        user_id: { $in: followingIds },
-      }).populate('user_id')
+      const FollowingLikes = await Promise.all(
+        getLikes.map(async (document: Like) => {
+          if (followingIds.includes(String(document.user_id))) {
+            await document.populate('user_id')
+          }
+          return document
+        }),
+      )
 
       return { FollowingLikes }
     } catch (error) {
@@ -128,5 +134,15 @@ export class LikesService {
     const product = await this.ProductService.findOne(id)
     if (!product) throw new NotFoundException('Product not found')
     return product
+  }
+
+  private handleExceptions(error: any): void {
+    if (error.code === 11000) {
+      throw new BadRequestException(
+        `Duplicate likes: ${JSON.stringify(error.keyValue)}`,
+      )
+    }
+    console.log(error)
+    throw new InternalServerErrorException(`${error}`)
   }
 }

@@ -22,6 +22,7 @@ import {
   ApiRemoveProduct,
 } from './decorators/apiDocProducts.decorator'
 import { FilesInterceptor } from '@nestjs/platform-express'
+import { Auth } from 'src/users/decorators'
 
 @ApiTags('Products')
 @Controller('products')
@@ -30,12 +31,14 @@ export class ProductsController {
 
   @ApiCreateProduct()
   @Post()
+  @Auth()
   async create(@Body() createProductDto: CreateProductDto) {
     return this.productService.create(createProductDto)
   }
 
   @ApiPatchUploadFiles()
   @Patch('files/:productId')
+  @Auth()
   @UseInterceptors(FilesInterceptor('files'))
   async uploadFiles(
     @UploadedFiles() files: Array<Express.Multer.File>,
@@ -58,6 +61,7 @@ export class ProductsController {
 
   @ApiPatchProduct()
   @Patch(':productId')
+  @Auth()
   update(
     @Param('productId') productId: string,
     @Body() updateProductDto: UpdateProductDto,
@@ -67,6 +71,7 @@ export class ProductsController {
 
   @ApiRemoveProduct()
   @Delete(':productId')
+  @Auth()
   remove(@Param('productId') productId: string) {
     return this.productService.remove(productId)
   }

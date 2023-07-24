@@ -59,11 +59,7 @@ export class Product {
     type: Array<{ url: string }>,
     description: 'images',
     required: true,
-    example: [
-      { url: 'http:img1.png' },
-      { url: 'http:img2.png' },
-      { url: 'http:img3.png' },
-    ],
+    example: ['http:img1.png', 'http:img2.png', 'http:img3.png'],
   })
   @Prop({ type: [{ type: SchemaTypes.ObjectId, ref: 'Image' }] })
   images: string[]

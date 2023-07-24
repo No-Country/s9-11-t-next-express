@@ -39,4 +39,33 @@ export class CloudinaryService {
         .end(file.buffer)
     })
   }
+
+  async uploadFilesCloudinary(
+    files: Array<Express.Multer.File>,
+    publicIds?: string[],
+    folder: string = CLOUDINARY_FOLDERS.DEFAULT,
+  ): Promise<(UploadApiResponse | UploadApiErrorResponse)[]> {
+    const promises = files.map(
+      (file, index) =>
+        new Promise<UploadApiResponse | UploadApiErrorResponse>(
+          (resolve, reject) => {
+            cloudinary.uploader
+              .upload_stream(
+                {
+                  resource_type: 'auto',
+                  folder,
+                  public_id: publicIds[index],
+                  overwrite: true,
+                },
+                (error, result) => {
+                  if (error) return reject(error)
+                  resolve(result)
+                },
+              )
+              .end(file.buffer)
+          },
+        ),
+    )
+    return Promise.all(promises)
+  }
 }

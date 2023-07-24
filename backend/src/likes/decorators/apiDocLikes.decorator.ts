@@ -27,7 +27,6 @@ export const ApiCreateLike = () => {
 export const ApiGetLikesByProductId = () => {
   return applyDecorators(
     ApiOperation({ operationId: 'FindLikesByProductId' }),
-    ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description:

@@ -31,7 +31,6 @@ export function ApiCreateFollower() {
 export function ApiFindFollowerCurrentUser() {
   return applyDecorators(
     ApiOperation({ operationId: 'FindFollowerCurrentUser' }),
-    ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description:
@@ -64,7 +63,6 @@ export function ApiFindFollowerCurrentUser() {
 export function ApiFindFollowingByCurrentUser() {
   return applyDecorators(
     ApiOperation({ operationId: 'FindFollowingByCurrentUser' }),
-    ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description: 'Id current User + Following user data. Ref: User',

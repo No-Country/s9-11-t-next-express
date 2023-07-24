@@ -63,7 +63,6 @@ export function ApiLoginUser() {
 export function ApiFindUser() {
   return applyDecorators(
     ApiOperation({ operationId: 'GetCurrentUser' }),
-    ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description: 'current user data',

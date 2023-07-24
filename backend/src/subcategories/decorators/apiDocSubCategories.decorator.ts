@@ -27,7 +27,6 @@ export function ApiCreateSubCategory() {
 export function ApiGetAllSubCategories() {
   return applyDecorators(
     ApiOperation({ operationId: 'getAllSubCategories' }),
-    ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description: 'SubCategory list (SubCategory))',
@@ -45,7 +44,6 @@ export function ApiGetAllSubCategories() {
 export function ApiGetSubCategoryById() {
   return applyDecorators(
     ApiOperation({ operationId: 'getSubCategoryById' }),
-    ApiBearerAuth(),
     ApiParam({
       name: 'id',
       type: 'string',

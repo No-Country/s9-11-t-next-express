@@ -31,7 +31,6 @@ export function ApiCreateReview() {
 export function ApiGetReviewByProductId() {
   return applyDecorators(
     ApiOperation({ operationId: 'CreateReview' }),
-    ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description:

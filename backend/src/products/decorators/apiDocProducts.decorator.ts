@@ -35,7 +35,6 @@ export function ApiCreateProduct() {
 export function ApiFindProduct() {
   return applyDecorators(
     ApiOperation({ operationId: 'FindProductById' }),
-    ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description: 'current product data',
@@ -47,7 +46,6 @@ export function ApiFindProduct() {
 export function ApiFindAllProducts() {
   return applyDecorators(
     ApiOperation({ operationId: 'GetCurrentProducts' }),
-    ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description: 'current products data',

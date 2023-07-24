@@ -8,7 +8,7 @@ regex='^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|merge)(\(.+\))?: 
 if ! [[ $commit_msg =~ $regex ]]; then
   echo "❌ El mensaje de commit no cumple con el formato de Conventional Commits."
   echo "❌ El formato debe ser: tipo(scope): descripción"
-  echo "🚩 tipos: feat|fix|chore|docs|style|refactor|perf|test|build|ci"
+  echo "🚩 tipos: feat|fix|chore|docs|style|refactor|perf|test|build|ci|merge"
   echo "🚩 Ejemplo: feat(users): Agregar funcionalidad de registro de usuarios"
   echo "🚩 Ref: https://gist.github.com/fabisanz-dev/cd28c3b73f778dc453ab053290be1e28"
   exit 1

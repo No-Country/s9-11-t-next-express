@@ -27,7 +27,6 @@ export function ApiCreateCategory() {
 export function ApiGetAllCategories() {
   return applyDecorators(
     ApiOperation({ operationId: 'getAllCategories' }),
-    ApiBearerAuth(),
     ApiResponse({
       status: 200,
       description: 'Category list (Category))',
@@ -45,7 +44,6 @@ export function ApiGetAllCategories() {
 export function ApiGetCategoryById() {
   return applyDecorators(
     ApiOperation({ operationId: 'getCategoryById' }),
-    ApiBearerAuth(),
     ApiParam({
       name: 'id',
       type: 'string',

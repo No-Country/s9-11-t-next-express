@@ -70,19 +70,36 @@ export class ProductsService {
   }
 
   async findAll() {
-    return await this.ProductModel.find().populate({
+    const Products = await this.ProductModel.find().populate({
       path: 'images',
       select: 'url -_id',
     })
+
+    // Extraer solo las URLs de las imágenes y devolver un arreglo de cadenas
+    const productsWithUrls = Products.map((product) => ({
+      ...product.toObject(),
+      images: product.images?.map((image: any) => image.url),
+    }))
+
+    return productsWithUrls
   }
 
   async findOne(id: string) {
-    const product = await this.ProductModel.findById(id).populate(
-      'id_user id_category id_subcategory',
-    )
-    if (!product) throw new NotFoundException('Product does not exist!')
+    const Product = await this.ProductModel.findById(id)
+      .populate('id_user id_category id_subcategory')
+      .populate({
+        path: 'images',
+        select: 'url -_id',
+      })
+    if (!Product) throw new NotFoundException('Product does not exist!')
 
-    return product
+    // Extraer solo las URLs de las imágenes y devolver un arreglo de cadenas
+    const productWithUrls = {
+      ...Product.toObject(),
+      images: Product.images?.map((image: any) => image.url),
+    }
+
+    return productWithUrls
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {

@@ -7,15 +7,21 @@ import {
   Param,
   Delete,
   UseInterceptors,
-  UploadedFile,
+  UploadedFiles,
 } from '@nestjs/common'
 import { ProductsService } from './products.service'
 import { CreateProductDto } from './dto/create-product.dto'
 import { UpdateProductDto } from './dto/update-product.dto'
-import { ApiResponse, ApiTags } from '@nestjs/swagger'
-import { ApiCreateProduct, ApiFindProduct, ApiRemoveProduct } from './decorators/apiDocProducts.decorator'
-import { FileInterceptor } from '@nestjs/platform-express'
-
+import { ApiTags } from '@nestjs/swagger'
+import {
+  ApiCreateProduct,
+  ApiFindAllProducts,
+  ApiFindProduct,
+  ApiPatchProduct,
+  ApiPatchUploadFiles,
+  ApiRemoveProduct,
+} from './decorators/apiDocProducts.decorator'
+import { FilesInterceptor } from '@nestjs/platform-express'
 
 @ApiTags('Products')
 @Controller('products')
@@ -24,41 +30,44 @@ export class ProductsController {
 
   @ApiCreateProduct()
   @Post()
-  @UseInterceptors(FileInterceptor('images')) // Aquí 'file' es el nombre del campo de la imagen en la solicitud
-  async create(@Body() createProductDto: CreateProductDto, @UploadedFile() file: Express.Multer.File) {
-    return this.productService.create(createProductDto, file);
+  async create(@Body() createProductDto: CreateProductDto) {
+    return this.productService.create(createProductDto)
   }
-  // async create(@Body() createProductDto: CreateProductDto) {
-  //   if (createProductDto.images) {
 
-  //     // Si hay una imagen en el DTO, procedemos a subirla a Cloudinary
-  //     const uploadedImage = await this.uploadToCloudinary(createProductDto.images);
+  @ApiPatchUploadFiles()
+  @Patch('files/:productId')
+  @UseInterceptors(FilesInterceptor('files'))
+  async uploadFiles(
+    @UploadedFiles() files: Array<Express.Multer.File>,
+    @Param('productId') productId: string,
+  ) {
+    return this.productService.uploadFiles(files, productId)
+  }
 
-  //     // Ahora, asignamos la URL de la imagen subida al DTO antes de crear el producto
-  //     createProductDto.images = uploadedImage.url;
-  //   }
-  //   return this.productsService.create(createProductDto)
-  // }
-
+  @ApiFindAllProducts()
   @Get()
   findAll() {
     return this.productService.findAll()
   }
 
   @ApiFindProduct()
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productService.findOne(id)
+  @Get(':productId')
+  findOne(@Param('productId') productId: string) {
+    return this.productService.findOne(productId)
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productService.update(id, updateProductDto)
+  @ApiPatchProduct()
+  @Patch(':productId')
+  update(
+    @Param('productId') productId: string,
+    @Body() updateProductDto: UpdateProductDto,
+  ) {
+    return this.productService.update(productId, updateProductDto)
   }
 
   @ApiRemoveProduct()
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productService.remove(id)
+  @Delete(':productId')
+  remove(@Param('productId') productId: string) {
+    return this.productService.remove(productId)
   }
 }

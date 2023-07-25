@@ -15,7 +15,7 @@ export default function FooterDesktop() {
         <p className="text-gray-400 text-xs">Copyright © 1999-2023 MercadoLibre Colombia LTDA.</p>
       </div>
     </div>:
-    pathname === '/common/components/register'?
+    pathname === '/common/components/register' || pathname === '/common/components/register/hub'?
     <></>
     :
     <footer className="flex justify-center bg-white mt-[1280px]">

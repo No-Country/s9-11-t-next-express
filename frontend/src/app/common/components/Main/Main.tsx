@@ -48,14 +48,16 @@ import DropdownUser from './components/dropdown_user';
   // const images: Array<string> = ["clon_mercadolibre.jpg", "otro.jpg", "main_cocina.jpg", "main_tecnologia.jpg"]
 
 export default function Main() {
-  const userMenu: object[] = [{id: 1, text: 'Salir'}];
+  const userMenu: object[] = [
+    {id: 1, text: 'Usuarios'},
+    {id: 2, text: 'Salir'},
+  ];
+
   let [user, setUser ] = useState([])
   let [isLogged, setIsLogged ] = useState(false)
   let router = useRouter();
   let pahtname = usePathname();
   SwiperCore.use([Autoplay])
-
-
 
   const deleteToken = () => {
     setUser([]);
@@ -64,6 +66,22 @@ export default function Main() {
     // router.push('/')
     location.reload()
   }
+
+const doSomething = (): void => {
+  for (let i = 0; i < userMenu.length; i++) {
+    if (userMenu[i]['text'] === 'Usuarios') {
+      router.push('/common/components/followers')
+      break;
+    } 
+    if (userMenu[i]['text'] === 'Salir') {
+      deleteToken();
+      break;
+    }
+    
+  }
+
+}
+ 
 
   return (
     <main className="flex justify-center">
@@ -116,7 +134,7 @@ export default function Main() {
                 </ul>
               </div>
             </div> */}
-             <DropdownUser userMenu={userMenu} deleteToken={deleteToken}/>
+             <DropdownUser userMenu={userMenu} doSomething={doSomething}/>
               <SwiperSlide>
                 <div className="flex justify-center bg-black">
                   <Image

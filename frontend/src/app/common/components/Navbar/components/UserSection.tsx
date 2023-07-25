@@ -54,48 +54,23 @@ export default function UserSection(): ReactNode {
     }, [])
   
   
-  
-  
-  
     const cerrarSesion = () => {
       // e.preventDefault();
       setUser({});
       localStorage.clear();
     }
+    
     return (
         <div className="flex justify-end items-center gap-[22px] text-[#333]">
             <div className="flex gap-[22px]">
                 {
                     isLogged === true?
                     <>
-                    {/* <Dropdown isOpen={dropdown} toggle={toggleDropDown}>
-                        <DropdownToggle caret>
-                            Santiago Rueda 
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem onClick={cerrarSesion}>
-                              Salir
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown> */}
                     <div onClick={toggleDropDown} className="flex flex-row justify-evenly items-center cursor-pointer">
                         <AiOutlineUser className="mr-1 border border-gray-500 rounded-full" size={15}/>
                         <p>{user["email"]? user["email"].slice(0,10) + "..." : "loading..."}</p>
                         <BiSolidDownArrow className="ml-1" size={10}/>
                     </div>
-                    {/* <div className="flex flex-col">
-                    <div className=" z-10 bg-white">
-                        <ul>
-                            {
-                                userMenu.map(el => {
-                                    return (
-                                        <li>{el}</li>
-                                    )
-                                })
-                            }
-                        </ul>
-                    </div>
-                    </div> */}
                     <Link href={'/common/components/login'}>Mis compras</Link>
                     </>
                     :

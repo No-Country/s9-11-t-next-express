@@ -91,10 +91,14 @@ function handleInput(e: any){
           </div>
 
             <button className=" bg-blue-500 py-4 rounded-md px-20 mt-4 text-white font-semibold"  >
-              Crear cuenta personal
+              <Link href={'/common/components/register/hub'}>
+                Crear cuenta personal
+              </Link>
             </button>
             <button className=" bg-gray-200 py-4 rounded-md px-[69px] mt-4 text-blue-500 font-semibold mb-16"  >
-              Crear cuenta de empresa
+              <Link href={'/common/components/register/hub'}>
+                Crear cuenta de empresa
+              </Link>
             </button>
         </div>
       </div>

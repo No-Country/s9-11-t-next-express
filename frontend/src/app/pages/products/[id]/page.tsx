@@ -583,10 +583,13 @@ export default function PageProduct() {
         {/* <div className="pl-11 pr-11 flex flex-col bg-white rounded-md pr-4 h-auto"> */}
         <div className="pl-11  flex flex-col bg-white rounded-md pr-4 ">
           {/* soy preguntas */}
+          {/* <div>Soy la linea separadora</div> */}
+          <br />
+          <hr />
 
-          <h2>Preguntas y respuestas</h2>
+          <h2 className="text-3xl mt-5">Preguntas y respuestas</h2>
           <div className="mt-10  w-auto h-[100px]">
-            <h3 className="pb-2"> ¿Qué quéres saber?</h3>
+            <h3 className="pb-2 text-xl"> ¿Qué quéres saber?</h3>
             <div className="h-[100p]">
               <ul className="flex gap-6 mt-3">
                 <li>
@@ -625,7 +628,7 @@ export default function PageProduct() {
             </div>
           </div>
           <div>
-            <p>Preguntale al vendedor</p>
+            <p className="text-xl mb-6">Preguntale al vendedor</p>
             <div className="flex ">
               <input
                 type="Escribi tu pregunta aqui"
@@ -673,13 +676,16 @@ export default function PageProduct() {
                 </div>
               </div>
               <div>
-                <p className="text-base">Hola. El reconocimiento de huella es en logo Motorola o en el lateral?</p>
+                <p className="text-base">
+                  Hola. El reconocimiento de huella es en logo Motorola o en el
+                  lateral?
+                </p>
 
                 <div className="flex gap-3 text-base">
                   <p className="text-vendidos">L</p>
 
                   <p className="text-vendidos h-10 mt-1">
-                  Hola buen día es en el lateral. Saludos
+                    Hola buen día es en el lateral. Saludos
                   </p>
                 </div>
               </div>
@@ -690,18 +696,30 @@ export default function PageProduct() {
                   <p className="text-vendidos">L</p>
 
                   <p className="text-vendidos h-10 mt-1">
-                  Así es! Se trata de un producto nuevo. Gracias por preguntar, cualquier consulta estamos a tu disposición! 
+                    Así es! Se trata de un producto nuevo. Gracias por
+                    preguntar, cualquier consulta estamos a tu disposición!
                   </p>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* <div>Soy la linea separadora</div> */}
+          <br />
+          <hr />
           <div>
             <div>
-            <h2>Opiniones de tus contactos</h2>
+              <h2 className="mb-12 text-2xl mt-[50px]">
+                {" "}
+                Opiniones de tus contactos
+              </h2>
             </div>
             <div>
-              
+              <BasicRating
+                stars={
+                  productData?.qualification ? productData?.qualification : 4
+                }
+              />
             </div>
           </div>
         </div>

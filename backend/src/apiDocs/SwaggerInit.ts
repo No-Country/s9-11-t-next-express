@@ -9,7 +9,7 @@ import { INestApplication } from '@nestjs/common'
 
 const swaggerOptions: ExpressSwaggerCustomOptionsI = {
   swaggerOptions: {
-    supportedSubmitMethods: ['head'],
+    // supportedSubmitMethods: ['head'],
     ignoreGlobalPrefix: true,
     // defaultModelsExpandDepth: -1,
   },

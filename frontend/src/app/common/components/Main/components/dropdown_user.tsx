@@ -1,19 +1,24 @@
 import React from 'react'
 
-function DropdownUser({userMenu, doSomething}) {
+function DropdownUser({userMenu}) {
   return (
     <div className="flex flex-col items-end">
-    <div id="user-dropdown" className=" z-10 bg-white  mr-[352px] -mt-[250px] shadow-md hidden hover:bg-blue-500">
-      <ul className="flex flex-col items-start text-left hover:bg-blue-500">
+    <div id="user-dropdown" className=" z-10 bg-white  mr-[352px] -mt-[250px] shadow-md hidden">
+      <ul className="flex flex-col items-start text-left flex-1 ">
+
           {
             userMenu.map((el: any) => {
                 return (
-                    <li key={el.id} onClick={doSomething} className="text-left pr-[73px] px-[6px] cursor-pointer hover:bg-blue-500 hover:text-white">
+                  <div className={el.text.length < 6? 'text-left pr-[115px] cursor-pointer hover:bg-blue-500 hover:text-white': el.text.length < 10? 'text-left pr-24 cursor-pointer hover:bg-blue-500 hover:text-white': 'text-left  cursor-pointer pr-1 hover:bg-blue-500 hover:text-white'}>
+
+                    <li key={el.id} onClick={el.do} className="">
                       {el.text}
                     </li>
+                   </div>
                 )
             })
           }
+
       </ul>
     </div>
   </div>

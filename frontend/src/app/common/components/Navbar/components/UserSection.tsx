@@ -16,7 +16,7 @@ export default function UserSection(): ReactNode {
         if(dropdown === false){
             userDropdown?.setAttribute("class", "hidden")
         } else {
-            userDropdown?.setAttribute("class","z-10 bg-white px-[6px] mr-[352px] -mt-[250px] shadow-md") 
+            userDropdown?.setAttribute("class","z-10 bg-white px-[6px] mr-[352px] -mt-[250px] shadow-md rounded-b-lg") 
         }
     }
   
@@ -59,7 +59,7 @@ export default function UserSection(): ReactNode {
       setUser({});
       localStorage.clear();
     }
-    
+
     return (
         <div className="flex justify-end items-center gap-[22px] text-[#333]">
             <div className="flex gap-[22px]">

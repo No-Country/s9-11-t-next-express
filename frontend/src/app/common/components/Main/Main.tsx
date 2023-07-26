@@ -49,12 +49,14 @@ import DropdownUser from './components/dropdown_user';
 
 export default function Main() {
   const userMenu: object[] = [
-    {id: 1, text: 'Usuarios'},
-    {id: 2, text: 'Salir'},
+    {id: 1, text: 'Mi perfil', do: () => {router.push('/common/components/myprofile');}},
+    {id: 2, text: 'Seguidores y seguidos', do: () => {router.push('/common/components/followers');}},
+    {id: 3, text: 'Salir', do: () => {deleteToken()}},
   ];
 
   let [user, setUser ] = useState([])
   let [isLogged, setIsLogged ] = useState(false)
+  let [pageDrop, setPageDropdown ] = useState("")
   let router = useRouter();
   let pahtname = usePathname();
   SwiperCore.use([Autoplay])
@@ -67,21 +69,6 @@ export default function Main() {
     location.reload()
   }
 
-const doSomething = (): void => {
-  for (let i = 0; i < userMenu.length; i++) {
-    if (userMenu[i]['text'] === 'Usuarios') {
-      router.push('/common/components/followers')
-      break;
-    } 
-    if (userMenu[i]['text'] === 'Salir') {
-      deleteToken();
-      break;
-    }
-    
-  }
-
-}
- 
 
   return (
     <main className="flex justify-center">
@@ -111,8 +98,12 @@ const doSomething = (): void => {
               navigation={true}
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
-              onSlideChange={() => console.log("slide change")}
-              onSwiper={(swiper) => console.log(swiper)}
+              // onSlideChange={() => /*console.log("slide change")*/ {
+              //  doS
+              
+              // }}
+              // onSlideChange={doSomething}
+              // onSwiper={(swiper) => console.log(swiper)}
               className="mySwiper z-0"
               autoplay={{
                 delay: 3000,
@@ -134,7 +125,7 @@ const doSomething = (): void => {
                 </ul>
               </div>
             </div> */}
-             <DropdownUser userMenu={userMenu} doSomething={doSomething}/>
+             <DropdownUser userMenu={userMenu} />
               <SwiperSlide>
                 <div className="flex justify-center bg-black">
                   <Image

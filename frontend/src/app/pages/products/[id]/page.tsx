@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-"use client"
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Slide } from "react-slideshow-image";
 // import Slideshow from "./Slides";
 import PrimaryButton from "../../../common/components/Buttom/PrimaryButton";
@@ -10,16 +10,34 @@ import BasicRating from "../../../common/components/PageProduct/Rating";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Phone from "../../../../../public/phone.png";
-import {MdFavorite} from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
 import Link from "next/link";
-
+import { NextRouter } from "next/router";
+import { fetchProductData } from "@/slice/productSlice";
+import { Button } from "@mui/material";
+import PrimaryButton2 from "@/app/common/components/Buttom/PrimaryButton2";
 
 export default function PageProduct() {
-
   const router = useRouter();
-  // const  id  = router.query.id;
-  // console.log(id)
+  const currentUrl = window.location.href;
+  const regex = /\/([\w-]+)$/;
+  const match = currentUrl.match(regex);
+  const number = match ? match[1] : null;
+  console.log("soy el id", number);
 
+  const [productData, setProductData] = useState(null);
+
+  useEffect(() => {
+    fetchProductData(number)
+      .then((data) => {
+        setProductData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching product data:", error);
+      });
+  }, [number]);
+  console.log(productData?.name);
+  const truncatedPrice = (productData?.price * 1.1).toFixed(2);
   const propsProduc = {
     title:
       'Notebook dell inspiron 3525 plateada 15.5", AMD Ryzen 5 5625U 8GB de RAM 256GB SSD, AMD Radeon RX Vega 7 120 Hz 1920x1080px Windows 11 Home',
@@ -50,7 +68,6 @@ export default function PageProduct() {
     addres: "San martin 1355",
   };
   const propsSeller = {
-    name: "SOY EL VENDEDOR",
     category: "MercadoLíder",
   };
   return (
@@ -58,9 +75,7 @@ export default function PageProduct() {
       {/* tambien te puede interesar */}
       <div className="flex  justify-between h-auto- w-auto">
         <div className=" flex flex-col ">
-
           <div className=" flex flex-row mb-4 mt-4">
-      
             <ul className="flex flex-row gap-4">
               <li>También puede interesarte </li>
               <li>
@@ -171,74 +186,78 @@ export default function PageProduct() {
         </div>
       </div>
       {/* Productos// precios */}
-      <div className=" flex  bg-white rounded-md pr-4">
+      <div className=" flex  bg-white rounded-md pr-4 h-auto">
         {/* columna izquierda */}
-        <div className="flex flex-col">
+        <div className="flex flex-col h-auto">
           {/* soy el producto */}
           <div className=" flex flex-row h-auto">
-
             <section className="w-[530px] pl-4 mt-10 flex flex-col ">
               <div className="flex flex-col sticky top-0">
-               <div className="flex flex-row  ">
-
-                <div className="w-[120px]">
-                  <ul>
-                    <li className="border border-gray-300 hover:border-black cursor-pointer">
-                    <Image 
-                    src={Phone}
-                    alt="detail-image"
-                    width={400}
-                    height={250}
-                  />
-                    </li>
-                    <li className="border border-gray-300 hover:border-black cursor-pointer mt-2">
-                    <Image 
-                    src={Phone}
-                    alt="detail-image"
-                    width={400}
-                    height={250}
-                  />
-                    </li>
-                    <li className="border border-gray-300 hover:border-black cursor-pointer mt-2">
-                    <Image 
-                    src={Phone}
-                    alt="detail-image"
-                    width={400}
-                    height={250}
-                  />
-                    </li>
-                  </ul>
-
-                </div>
-                <div className="w-[980px] h-[400px] mb-[100px]">
-                  <Image 
-                    src={Phone}
-                    alt="detail-image"
-                    width={5000}
-                    height={1000}
-                  />
-                </div>
+                <div className="flex flex-row  ">
+                  <div className="w-[120px]">
+                    <ul>
+                      <li className="border border-gray-300 hover:border-black cursor-pointer">
+                        <Image
+                          src={Phone}
+                          alt="detail-image"
+                          width={400}
+                          height={250}
+                        />
+                      </li>
+                      <li className="border border-gray-300 hover:border-black cursor-pointer mt-2">
+                        <Image
+                          src={Phone}
+                          alt="detail-image"
+                          width={400}
+                          height={250}
+                        />
+                      </li>
+                      <li className="border border-gray-300 hover:border-black cursor-pointer mt-2">
+                        <Image
+                          src={Phone}
+                          alt="detail-image"
+                          width={400}
+                          height={250}
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="w-[980px] h-[400px] mb-[100px]">
+                    <Image
+                      src={Phone}
+                      alt="detail-image"
+                      width={5000}
+                      height={1000}
+                    />
+                  </div>
                 </div>
                 <div className="text-sm flex flex-row  justify-center items-center mb-24 -mt-5 ">
-                  <MdFavorite className="text-red-500 h-6 w-6"/>&nbsp;&nbsp;
+                  <MdFavorite className="text-red-500 h-6 w-6" />
+                  &nbsp;&nbsp;
                   <span> Le gusta a </span>&nbsp;
                   <Link href={``} className="text-blue-400">
                     juliarodriguez, pedrotheret y 300 personas más
                   </Link>
                 </div>
-            </div>
+              </div>
             </section>
             <section className="w-[297px] mt-10">
               <div>
                 <p className="text-vendidos">Nuevo | +1000 vendidos</p>
-                <h2 className="w-[340px] text-2xl">{propsProduc.title}</h2>
+                <h2 className="w-[340px] text-2xl">{productData?.name}</h2>
                 <div className="">
-                  <BasicRating stars={propsProduc.stars} />
+                  <BasicRating
+                    stars={
+                      productData?.qualification
+                        ? productData?.qualification
+                        : 4
+                    }
+                  />
                 </div>
               </div>
               <div className="h-auto w-auto mt-4 }">
-                <del className="text-base">$ {propsProduc.price2}</del>
-                <p className="text-4xl">$ {propsProduc.price1}</p>
+                <del className="text-base">$ {truncatedPrice}</del>
+                <p className="text-4xl">$ {productData?.price}</p>
                 <p>Pagá en cuotas </p>
                 <div className="flex gap-1">
                   <p className="text-verde-meli ">Duplica puntos: </p>
@@ -256,7 +275,7 @@ export default function PageProduct() {
 
               <div className="mt-8">
                 <p>Lo que tenes que saber de este producto</p>
-                {propsProduc.description.map((item, index) => (
+                {productData?.characteristics.map((item, index) => (
                   <ol className="list-disc" key={"prueba"}>
                     <li className="pl-3 mt-4 w-[341px]" key={index}>
                       {item}
@@ -277,7 +296,7 @@ export default function PageProduct() {
               className="mt-12 text-description
             "
             >
-              {propsProduc.description2}
+              {productData?.description}
             </div>
           </div>
         </div>
@@ -286,20 +305,19 @@ export default function PageProduct() {
           <div className="rounded-[6px] border-[1px] border-border-color pt-3 pl-3 pr-3">
             <div>
               <span>
-                <span className="text-[30px]">$ {propsProduc.price1}</span>
+                <span className="text-[30px]">$ {productData?.price}</span>
               </span>
             </div>
             <div className="mt-5 ml-2 mr-2 mb-4">
-              <p className="text-verde-meli ">
-                {" "}
-                Llega gratis el Sabado
-              </p>
-              <a href="">Enviar a {propsUser.addres}</a>
+              <p className="text-verde-meli "> Llega gratis el Sabado</p>
+              <a href="">Enviar a {productData?.id_user.address}</a>
             </div>
             <div className="mb-5">
               <div className=" flex gap-2">
                 <span>Vendido por </span>
-                <p className="text-hipervinculos">{propsSeller.name}</p>
+                <p className="text-hipervinculos">
+                  {productData?.id_user.name}
+                </p>
               </div>
               <div>
                 <p> {propsSeller.category} | +1000 vendidos</p>
@@ -389,14 +407,16 @@ export default function PageProduct() {
               <p>Información sobre el vendedor</p>
             </div>
             <div className="flex gap-3 mb-5">
-              <div>icono</div>
+              <div>
+                <img src="/medalla.svg" alt="" />
+              </div>
               <div>
                 <p>{propsSeller.category}</p>
                 <p>¡Es uno de los mejores del sitio!</p>
               </div>
             </div>
             <div>
-              <img src="./reputacion.png" alt="dsadas" />
+              <img src="/reputacion.png" alt="dsadas" />
             </div>
             <div className="m-1 mt-4">
               <ul className=" w-auto flex gap-2">
@@ -559,41 +579,132 @@ export default function PageProduct() {
         </div>
       </div>
 
-      <div>
+      <div className="h-auto">
         {/* <div className="pl-11 pr-11 flex flex-col bg-white rounded-md pr-4 h-auto"> */}
-        <div className="pl-11  flex flex-col bg-white rounded-md pr-4 h-auto">
+        <div className="pl-11  flex flex-col bg-white rounded-md pr-4 ">
           {/* soy preguntas */}
 
           <h2>Preguntas y respuestas</h2>
-          <div className="mt-10 h-auto w-auto">
+          <div className="mt-10  w-auto h-[100px]">
             <h3 className="pb-2"> ¿Qué quéres saber?</h3>
-            <div>
-              <ul className="flex gap-6 " >
+            <div className="h-[100p]">
+              <ul className="flex gap-6 mt-3">
                 <li>
-                  <a className="text-azul-meli bg-greys-button pl-3 pr-3 p-3" href="https://www.mercadolibre.com.ar/gz/shipping-calculator?item_id=MLA1436493614&amp;new_version=true&amp;modal=false&amp;informative=true&amp;pdp_filters=deal%3AMLA779357-1&amp;quick_access=true">
+                  <a
+                    className="text-azul-meli bg-greys-button pl-3 pr-3 p-3"
+                    href="https://www.mercadolibre.com.ar/gz/shipping-calculator?item_id=MLA1436493614&amp;new_version=true&amp;modal=false&amp;informative=true&amp;pdp_filters=deal%3AMLA779357-1&amp;quick_access=true"
+                  >
                     Costo y tiempo de envío
                   </a>
                 </li>
                 <li>
-                  <a href="https://articulo.mercadolibre.com.ar/noindex/freeReturn/fashion?itemId=MLA1436493614&amp;quantity=1&amp;new_version=true&amp;modal=false">
+                  <a
+                    className="text-azul-meli bg-greys-button pl-3 pr-3 p-3"
+                    href="https://articulo.mercadolibre.com.ar/noindex/freeReturn/fashion?itemId=MLA1436493614&amp;quantity=1&amp;new_version=true&amp;modal=false"
+                  >
                     Devoluciones gratis
                   </a>
                 </li>
                 <li>
-                  <a href="https://articulo.mercadolibre.com.ar/noindex/services/MLA1436493614/payments?new_version=true&amp;modal=false">
+                  <a
+                    className="text-azul-meli bg-greys-button pl-3 pr-3 p-3"
+                    href="https://articulo.mercadolibre.com.ar/noindex/services/MLA1436493614/payments?new_version=true&amp;modal=false"
+                  >
                     Medios de pago y promociones
                   </a>
                 </li>
                 <li>
-                  <a href="https://articulo.mercadolibre.com.ar/noindex/warranty/MLA1436493614?new_version=true&amp;modal=false">
+                  <a
+                    className="text-azul-meli bg-greys-button pl-3 pr-3 p-3"
+                    href="https://articulo.mercadolibre.com.ar/noindex/warranty/MLA1436493614?new_version=true&amp;modal=false"
+                  >
                     Garantía
                   </a>
                 </li>
               </ul>
             </div>
           </div>
+          <div>
+            <p>Preguntale al vendedor</p>
+            <div className="flex ">
+              <input
+                type="Escribi tu pregunta aqui"
+                placeholder="Escribí tu pregunta"
+                className=" h-[65px] w-[772px] rounded mr-8 border border-greys-button"
+              />
+              <PrimaryButton2 name={"Preguntar"} />
+            </div>
+            <div className="mt-12 ">
+              <p className="mb-12 text-lg">Últimas realizadas</p>
+              <div>
+                <p className="text-base">Hola esta liberado?</p>
+
+                <div className="flex gap-3 text-base">
+                  <p className="text-vendidos">L</p>
+
+                  <p className="text-vendidos h-10 mt-1">
+                    Hola. Si, te confirmamos que este equipo es liberado para
+                    cualquier compañía telefónica, aguardamos tu compra,
+                    saludos.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <p className="text-base">Hola tiene NFC?</p>
+
+                <div className="flex gap-3 text-base">
+                  <p className="text-vendidos">L</p>
+
+                  <p className="text-vendidos h-10 mt-1">
+                    Hola. Te informamos que sí tiene NFC. Aguardamos tu compra
+                  </p>
+                </div>
+              </div>
+              <div>
+                <p className="text-base">Buenas noches, trae cargador? </p>
+
+                <div className="flex gap-3 text-base">
+                  <p className="text-vendidos">L</p>
+
+                  <p className="text-vendidos h-10 mt-1 font-normal">
+                    Hola, te comentamos que este producto incluye cargador.
+                    Aguardamos tu compra. Saludos.
+                  </p>
+                </div>
+              </div>
+              <div>
+                <p className="text-base">Hola. El reconocimiento de huella es en logo Motorola o en el lateral?</p>
+
+                <div className="flex gap-3 text-base">
+                  <p className="text-vendidos">L</p>
+
+                  <p className="text-vendidos h-10 mt-1">
+                  Hola buen día es en el lateral. Saludos
+                  </p>
+                </div>
+              </div>
+              <div>
+                <p className="text-base">Es nuevo ?!</p>
+
+                <div className="flex gap-3 text-base">
+                  <p className="text-vendidos">L</p>
+
+                  <p className="text-vendidos h-10 mt-1">
+                  Así es! Se trata de un producto nuevo. Gracias por preguntar, cualquier consulta estamos a tu disposición! 
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>
+            <h2>Opiniones de tus contactos</h2>
+            </div>
+            <div>
+              
+            </div>
+          </div>
         </div>
-        <div>soy recomendaciones</div>
       </div>
     </div>
   );

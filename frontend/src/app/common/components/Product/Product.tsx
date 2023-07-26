@@ -1,6 +1,7 @@
 import React from "react";
 import { ProductData } from '../types';
 import Link from "next/link";
+import Image from "next/image";
 
 interface ProductProps {
     product: ProductData;
@@ -10,13 +11,16 @@ interface ProductProps {
 
 export default function Product({ product  }) {
   const truncatedPrice = (product.price / 9).toFixed(2);
+// console.log(product.images[0])
   return (
     <div className="max-w-[250px] rounded-3xl m-5 bg-white">
       <Link href={`/pages/products/${product._id}`}>
         <div className="rounded-3xl">
-          <img
+          <Image
+          width={300}
+          height={282}
             className="w-[300px] h-[282px] rounded-t-lg"
-            src={`${product.images[0]}`}
+            src={product.images ? product.images[0] : 'https://res.cloudinary.com/dgsrbbfma/image/upload/v1690159807/No-country-s9/Products/qyyrh813zsn6khwop43q.png'}
             alt=""
           />
         </div>

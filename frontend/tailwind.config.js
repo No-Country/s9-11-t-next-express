@@ -36,6 +36,7 @@ module.exports = {
         "amarillo-meli": "rgb(255,241,89)",
         "hipervinculos": "rgb(52,131,250)",
         "vendidos": "rgba(0,0,0,0.5)",
+        "vendidos2": "rgba(0,0,0,0.9)",
         "verde-meli": "#00a650",
         "azul-meli": "#3483fa",
         "greys-button": "#4189e626",

@@ -15,10 +15,7 @@ async function bootstrap() {
   )
   app.enableCors({
     credentials: true,
-    origin:
-      process.env.NODE_ENV === 'production'
-        ? process.env.CLIENT_URL
-        : process.env.DEV_CLIENT_URL,
+    origin: '*',
   })
 
   SwaggerModuleRun(app)

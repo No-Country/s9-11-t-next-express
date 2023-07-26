@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Slide } from "react-slideshow-image";
 // import Slideshow from "./Slides";
 import PrimaryButton from "../../../common/components/Buttom/PrimaryButton";
 import SecondaryButton from "../../../common/components/Buttom/SecondaryButton";
 import BasicRating from "../../../common/components/PageProduct/Rating";
 // import { useRouter } from "next/router";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Phone from "../../../../../public/phone.png";
 import { MdFavorite } from "react-icons/md";
@@ -16,16 +16,37 @@ import { NextRouter } from "next/router";
 import { fetchProductData } from "@/slice/productSlice";
 import { Button } from "@mui/material";
 import PrimaryButton2 from "@/app/common/components/Buttom/PrimaryButton2";
+declare global {
+  interface Window {
+      FB:any;
+  }
+}
 
-export default function PageProduct() {
+export default function PageProduct(): ReactElement {
+
+  // let FB = window.FB; 
   const router = useRouter();
-  const currentUrl = window.location.href;
+
+  const pathname = usePathname()
   const regex = /\/([\w-]+)$/;
-  const match = currentUrl.match(regex);
+  const match = pathname.match(regex);
   const number = match ? match[1] : null;
   console.log("soy el id", number);
 
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState({
+    name: "",
+    price: 0,
+    characteristics: [],
+    qualification: 0,
+    description: "",
+    id_user: {
+      name: "",
+      address: ""
+    }
+
+  });
+
+
 
   useEffect(() => {
     fetchProductData(number)

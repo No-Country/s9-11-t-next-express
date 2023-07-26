@@ -9,9 +9,9 @@ function DropdownUser({userMenu}) {
           {
             userMenu.map((el: any) => {
                 return (
-                  <div className={el.text.length < 6? 'text-left pr-[115px] cursor-pointer hover:bg-blue-500 hover:text-white': el.text.length < 10? 'text-left pr-24 cursor-pointer hover:bg-blue-500 hover:text-white': 'text-left  cursor-pointer pr-1 hover:bg-blue-500 hover:text-white'}>
+                  <div key={el.id} className={el.text.length < 6? 'text-left pr-[115px] cursor-pointer hover:bg-blue-500 hover:text-white': el.text.length < 10? 'text-left pr-24 cursor-pointer hover:bg-blue-500 hover:text-white': 'text-left  cursor-pointer pr-1 hover:bg-blue-500 hover:text-white'}>
 
-                    <li key={el.id} onClick={el.do} className="">
+                    <li  onClick={el.do} className="">
                       {el.text}
                     </li>
                    </div>

@@ -88,7 +88,6 @@ function Followers() {
       divOne.className = "bg-white cursor-pointer text-gray-400 text-md px-[93px] py-5 border-2 border-r-gray-300"
       divDos.className = "bg-white cursor-pointer text-blue-600 text-md px-[93px] py-5 border-[2px] border-b-blue-500 border-l-white"
 
-
     }
   }
 

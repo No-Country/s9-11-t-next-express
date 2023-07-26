@@ -36,6 +36,19 @@ interface ProductData {
     }
   };
 
+  export const fetchProductData = async (productId) => {
+    try {
+      const apiUrl = `https://meliclon-social-api-nc.onrender.com/api/meliclon/v1/products/${productId}`;
+      const response = await axios.get(apiUrl);
+      const data = response.data;
+     
+      return data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error;
+    }
+  };
+
  
 
 const useFetch = (endpoint) => {

@@ -10,7 +10,7 @@ interface ProductProps {
 //   const Product: React.FC<ProductProps> = ({ product }) => {
 
 export default function Product({ product  }) {
-  const truncatedPrice = (product.price / 9).toFixed(2);
+  const truncatedPrice = (product.price / 9).toFixed(3);
 // console.log(product.images[0])
   return (
     <div className="max-w-[250px] rounded-3xl m-5 bg-white">

@@ -792,7 +792,7 @@ console.log(productData.images)
                       <div className="flex items-center">
                         <BasicRating stars={review.stars} />
                         <img
-                          className="rounded-full mr-5 ml-5  content-center "
+                          className="rounded-full mr-5 ml-5 w-16 content-center "
                           src={review.user_id.avatar}
                           alt=""
                         />
@@ -802,13 +802,20 @@ console.log(productData.images)
                         <p className="mt-3 mr-10">{formattedDate}</p>
                       </div>
                     </div>
-                    <div className="mt-6">
+                    <div className="mt-6 mb-6">
                       <p>{review.comment}</p>
                     </div>
                   </div>
                 );
               })}
-
+  <br />
+          <hr />
+          <div>
+              <h2 className="mb-9 text-2xl mt-[30px]">
+                {" "}
+                Opiniones de otros usuarios
+              </h2>
+            </div>
               {/* Mapear sobre las revisiones que no tienen el campo 'name' */}
               {productDataReview?.FollowingReviews?.filter(
                 (review) => !review.user_id.name

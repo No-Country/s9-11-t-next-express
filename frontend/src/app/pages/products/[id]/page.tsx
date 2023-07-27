@@ -76,11 +76,13 @@ export default function PageProduct(): ReactElement {
       });
   }, [number]);
 
-const [selectedImage, setSelectedImage] = useState(productData.images[0]); 
+const [selectedImage, setSelectedImage] = useState('https://res.cloudinary.com/dgsrbbfma/image/upload/v1690159807/No-country-s9/Products/uhtx11omqb3vp3lxopeu.png'); 
+
+
 console.log(selectedImage)
 console.log(productData.images)
   const handleImageClick = (image) => {
-    setSelectedImage(image);
+    setSelectedImage(image || productData.images[0]);
   };
  
   const truncatedPrice = (productData?.price * 1.1).toFixed(3);
@@ -242,12 +244,12 @@ console.log(productData.images)
                 <div className="flex flex-row  ">
                   <div className="w-[120px]">
                     <ul>
-                      {productData?.images?.map((element, index) => (
+                    {productData?.images?.map((element, index) => (
                         <li
                         
-                        // key={index}
+                        key={index}
                         className="border border-gray-300 hover:border-black cursor-pointer"
-                        // onClick={() => handleImageClick(element)}
+                        onClick={() => handleImageClick(element)}
                         >
                          
                           <Image

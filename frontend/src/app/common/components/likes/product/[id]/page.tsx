@@ -53,7 +53,7 @@ const newId = generateId();
   return (
     <>
     <div className="flex flex-col justify-center items-center mt-9">
-      <h1 className="text-xl text-black font-semibold">
+      <h1 className="text-xl text-black font-semibold mb-7">
        Personas que les gustó el producto      
       </h1>
       {
@@ -63,7 +63,7 @@ const newId = generateId();
                 
               <div 
                 key={el['_id']} 
-                className="  flex justify-start items-start bg-white py-2 shadow-md w-[350px] mt-6"
+                className="  flex justify-start items-start bg-white py-2 shadow-md w-[350px] "
               >
               <div className="ml-4 ">
               <Image 

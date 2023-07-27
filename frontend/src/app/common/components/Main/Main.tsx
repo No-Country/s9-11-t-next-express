@@ -90,7 +90,7 @@ export default function Main() {
   return (
     <main className="flex justify-center">
       <div className="h-auto flex flex-col  w-full">
-        <section className="h-[340px] w-full">
+        <section className="h-[250px] w-full">
           <div className="h-[10px] -mx-[200px]">
             <Swiper
               modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -149,9 +149,8 @@ export default function Main() {
             </Swiper>
           </div>
         </section>
-        <br />
-        <br />
-        <section className="mt-12">
+        
+        <section >
           <div className="flex flex-row items-center justify-center pt-5 pb-10 rounded-md ">
             <div className="h-[100px] w-[1200px] flex  justify-center bg-white  rounded-md ">
               <div className="flex justify-center items-center pr-10">

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, ReactElement } from 'react';
 
 
-const likesPerProduct = (): ReactElement => {
+const LikesPerProduct = (): ReactElement => {
 
   const [likes, setLikes] = useState([]);
   const pathname = usePathname();
@@ -185,4 +185,4 @@ const newId = generateId();
   )
 }
 
-export default likesPerProduct
+export default LikesPerProduct;

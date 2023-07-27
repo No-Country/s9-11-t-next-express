@@ -41,7 +41,8 @@ module.exports = {
         "azul-meli": "#3483fa",
         "greys-button": "#4189e626",
         "border-color": " #e5e5e5",
-        "description":"#666"
+        "description":"#666",
+        "description2":"#333"
       },
       maxWidth: {
         container: "1200px",

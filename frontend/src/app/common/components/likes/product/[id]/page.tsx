@@ -53,7 +53,7 @@ const newId = generateId();
   return (
     <>
     <div className="flex flex-col justify-center items-center mt-9">
-      <h1 className="text-xl text-black font-semibold mb-7">
+      <h1 className="text-xl text-black  font-semibold mb-7">
        Personas que les gustó el producto      
       </h1>
       {
@@ -78,7 +78,7 @@ const newId = generateId();
               </div>
               <div className="flex justify-start items-start flex-col ml-2 content-center">
                 <h1 
-                  className=" text-black text-lg font-semibold">{
+                  className=" text-black text-lg mt-3 ml-2 ">{
                     el['user_id']['name'] == undefined? 
                     `user ${newId.next().value}`:
                     `${el['user_id']['name'] }`}
@@ -112,7 +112,7 @@ const newId = generateId();
               </div>
               <div className="flex justify-start items-start flex-col ml-2 content-center">
                 <h1 
-                  className=" text-black text-lg font-semibold">{
+                  className=" text-black text-lg mt-1 ml-2">{
                     el['user_id']['name'] == undefined? 
                     `user ${newId.next().value}`:
                     `${el['user_id']['name'] }`}

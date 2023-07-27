@@ -2,7 +2,7 @@ import Link from "next/link"
 import { useEffect, useState, ReactNode } from 'react';
 import {BiSolidDownArrow} from "react-icons/bi";
 import {AiOutlineUser} from "react-icons/ai";
-
+import {PiShoppingCart} from "react-icons/pi";
 
 export default function UserSection(): ReactNode {
     let [email, setEmail ] = useState("")
@@ -82,8 +82,8 @@ export default function UserSection(): ReactNode {
                     </>
                 }
             </div>
-            <div className="w-[20px] h-[20px] bg-black">
-
+            <div >
+                <PiShoppingCart size={20} />
             </div>
 
 

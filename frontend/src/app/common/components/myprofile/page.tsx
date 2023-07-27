@@ -9,7 +9,7 @@ function Profiles() {
   const [user, setUser] = useState({});
   const profileImg = 'https://happytravel.viajes/wp-content/uploads/2020/04/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png';
   const getUser = () => {
-    const user= JSON.parse(localStorage.getItem('token') as string) ;
+    const user= JSON.parse(localStorage.getItem('token') as string);
     const config = {
       headers: {
         'content-type': 'application/json',

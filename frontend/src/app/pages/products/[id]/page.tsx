@@ -277,8 +277,11 @@ console.log(productData.images)
                   <MdFavorite className="text-red-500 h-6 w-6" />
                   &nbsp;&nbsp;
                   <span> Le gusta a </span>&nbsp;
-                  <Link href={``} className="text-blue-400">
+                  {/* <Link href={``} className="text-blue-400">
                     juliarodriguez, pedrotheret y 300 personas más
+                  </Link> */}
+                  <Link href={`/common/components/likes/product/${number}`} className="text-blue-400">
+                    2 personas.
                   </Link>
                 </div>
               </div>

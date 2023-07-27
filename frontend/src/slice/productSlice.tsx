@@ -68,6 +68,7 @@ interface ProductData {
     }
   };
 
+  
 
 const useFetch = (endpoint) => {
   const [data, setData] = useState([]);

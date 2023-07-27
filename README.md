@@ -44,21 +44,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut tincidunt orc
 
 ## Fronted: 
 <!-- Img profile -->
-| <img src="https://ui-avatars.com/api/?name=John+Doe" width=80 /> | <img src="https://ui-avatars.com/api/?name=John+Doe" width=80 /> | <img src="https://ui-avatars.com/api/?name=John+Doe" width=80 /> | <img src="https://ui-avatars.com/api/?name=John+Doe" width=80 /> | <img src="https://ui-avatars.com/api/?name=John+Doe" width=80 /> | 
-|:-:|:-:|:-:|:-:|:-:|
-| **John Doe** | **John Doe** | **John Doe** | **John Doe** | **John Doe** | <!-- full names -->
-| <a href="https://github.com/#"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> | <a href="https://github.com/#"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> | <a href="https://github.com/#"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> | <a href="https://github.com/#"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> | <a href="https://github.com/#"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> |<!---Github profile-->
-| <a href="https://www.linkedin.com/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/> | <a href="https://www.linkedin.com/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com//"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/> | <a href="https://www.linkedin.com//"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/> |<!---Linkedin profile-->
-| <img src="https://flagcdn.com/16x12/br.png" /> | <img src="https://flagcdn.com/16x12/pe.png" /> | <img src="https://flagcdn.com/16x12/py.png" /> |<img src="https://flagcdn.com/16x12/bo.png" /> |<img src="https://flagcdn.com/16x12/ec.png" /> |<!-- country flags profile -->
-
-## QA: 
-<!-- Img profile -->
-| <img src="https://ui-avatars.com/api/?name=John+Doe" width=80 /> | <img src="https://ui-avatars.com/api/?name=John+Doe" width=80 /> |
+| <img src="https://media.licdn.com/dms/image/D4D03AQHTxmiJRODHGw/profile-displayphoto-shrink_800_800/0/1681091817929?e=1695859200&v=beta&t=NMsLd1qX8Qkjl7ylFPJKbYE9nZ46SR6uEdYvq0mjLEg" width=80 /> | <img src="https://media.licdn.com/dms/image/C4E03AQEp4WfCpMXUIQ/profile-displayphoto-shrink_800_800/0/1550114142588?e=1695859200&v=beta&t=QWMZUBZLudfanQAIpF8RZCKXQzXE_OrY_y2mkluta38" width=80 /> 
 |:-:|:-:|
-| **John Doe** | **John Doe** | <!-- full names -->
-| <a href="https://github.com/#"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> | <a href="https://github.com/#"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> |<!---Github profile-->
-| <a href="https://www.linkedin.com/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/> | <a href="https://www.linkedin.com/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |<!---Linkedin profile-->
-| <img src="https://flagcdn.com/16x12/ar.png" /> | <img src="https://flagcdn.com/16x12/br.png" /> | <!-- country flags profile -->
+| **Agustin Soleti** | **Santiago Rueda** | <!-- full names -->
+| <a href="https://github.com/aguusoleti"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> | <a href="https://github.com/srueda9331#"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <!---Github profile-->
+| <a href="https://www.linkedin.com/in/aguusoleti/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/> | <a href="https://www.linkedin.com/in/santiago-josé-rueda-valencia-23b000180/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> <!---Linkedin profile-->
+| <img src="https://flagcdn.com/16x12/ar.png" /> | <img src="https://flagcdn.com/16x12/co.png" /> | <!-- country flags profile -->
+
+
 
 ## UX: 
 <!-- Img profile -->

@@ -43,6 +43,7 @@ import "swiper/css/scrollbar";
 import { usePathname, useRouter } from "next/navigation";
 // import "swiper";
 import DropdownUser from './components/dropdown_user';
+import FooterDesktop from "../Footer/FooterDesktop";
 
 
   // const images: Array<string> = ["clon_mercadolibre.jpg", "otro.jpg", "main_cocina.jpg", "main_tecnologia.jpg"]
@@ -482,6 +483,10 @@ export default function Main() {
             </div>
           </div>
         </section>
+        <div className="w-full ">
+
+      <FooterDesktop/>
+        </div>
       </div>
     </main>
   );

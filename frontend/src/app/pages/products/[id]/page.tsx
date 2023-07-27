@@ -38,7 +38,6 @@ export default function PageProduct(): ReactElement {
     characteristics: [],
     qualification: 0,
     description: "",
-
     images: [],
     id_user: {
       name: "",
@@ -67,7 +66,6 @@ export default function PageProduct(): ReactElement {
     }
   }, [number]);
 
-
   useEffect(() => {
     fetchProductData(number)
       .then((data) => {
@@ -77,12 +75,14 @@ export default function PageProduct(): ReactElement {
         console.error("Error fetching product data:", error);
       });
   }, [number]);
-const [selectedImage, setSelectedImage] = useState(productData.images[0]); 
 
+const [selectedImage, setSelectedImage] = useState(productData.images[0]); 
+console.log(selectedImage)
+console.log(productData.images)
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
-  console.log(selectedImage)
+ 
   const truncatedPrice = (productData?.price * 1.1).toFixed(3);
   const propsProduc = {
     title:
@@ -242,12 +242,14 @@ const [selectedImage, setSelectedImage] = useState(productData.images[0]);
                 <div className="flex flex-row  ">
                   <div className="w-[120px]">
                     <ul>
-                      {productData.images.map((element, index) => (
+                      {productData?.images?.map((element, index) => (
                         <li
-                          key={index}
-                          className="border border-gray-300 hover:border-black cursor-pointer"
-                          onClick={() => handleImageClick(element)}
+                        
+                        // key={index}
+                        className="border border-gray-300 hover:border-black cursor-pointer"
+                        // onClick={() => handleImageClick(element)}
                         >
+                         
                           <Image
                             src={element}
                             alt={`detail-image-${index}`}

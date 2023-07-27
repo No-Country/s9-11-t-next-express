@@ -10,13 +10,14 @@ import BasicRating from "../../../common/components/PageProduct/Rating";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Phone from "../../../../../public/phone.png";
-import { MdFavorite } from "react-icons/md";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import Link from "next/link";
 import { NextRouter } from "next/router";
 import { fetchDataReview, fetchProductData } from "@/slice/productSlice";
 import { Button, Rating } from "@mui/material";
 import PrimaryButton2 from "@/app/common/components/Buttom/PrimaryButton2";
 import FooterDesktop from "@/app/common/components/Footer/FooterDesktop";
+import axios from "axios";
 declare global {
   interface Window {
       FB:any;
@@ -46,8 +47,92 @@ export default function PageProduct(): ReactElement {
     },
   });
   const [productDataReview, setProductDataReview] = useState<any>(null);
+  const [numberLikes, setNumberLikes] = useState(0);
+  const [ changeFavouriteState, setChangeFavouriteState ] = useState(false);
+  const [likes, setLikes] = useState([]);
 
+  const getNumberOfLikes = () => {
+    const user= JSON.parse(localStorage.getItem('token') as string) ;
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + user['token'] 
+      }
+    }
+    axios.get(`https://meliclon-social-api-nc.onrender.com/api/meliclon/v1/likes/product/${number}`, config)
+    .then((res) => {
+    console.log(res.data);
+    setNumberLikes(res.data.FollowingLikes.length); 
+    console.log(numberLikes);
+    
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
 
+  const addOrDelete = () => {
+    setChangeFavouriteState(!changeFavouriteState);
+    const favourite = document.getElementById('favourite') as HTMLElement;
+    const user= JSON.parse(localStorage.getItem('token') as string);
+    if(changeFavouriteState === true){
+      favourite.setAttribute("class", "text-azul-meli  h-6 w-6")
+      const like = {  
+        "product_id": number,
+        "user_id": user["_id"],
+    }
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + user['token'] 
+      }
+    }
+
+      console.log(like);
+      console.log(config);
+      
+      axios.post('https://meliclon-social-api-nc.onrender.com/api/meliclon/v1/likes', like, config)
+      .then(res => {   
+        console.log(res);
+        setNumberLikes(numberLikes => numberLikes + 1)
+        
+        }).catch((err) => {
+          console.log(err);
+        })
+      
+    } else if(changeFavouriteState === false){
+      favourite.setAttribute("class", "h-6 w-6 text-black");
+      const config = {
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': 'Bearer ' + user['token'] 
+        }
+      }
+      axios.delete(`https://meliclon-social-api-nc.onrender.com/api/meliclon/v1/likes/${number}`, config)
+      .then(res => {   
+        console.log(res);
+        setNumberLikes(numberLikes => numberLikes - 1)
+
+        }).catch((err) => {
+          console.log(err);
+          
+        })
+    }
+  };
+
+  useEffect(() => {
+    fetchProductData(number)
+      .then((data) => {
+        setProductData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching product data:", error);
+      });
+
+      getNumberOfLikes();
+  }, [number]);
+
+console.log(numberLikes)
 
   useEffect(() => {
     // Obtenemos el objeto completo almacenado en Local Storage
@@ -274,15 +359,17 @@ console.log(productData.images)
                   </div>
                 </div>
                 <div className="text-sm flex flex-row  justify-center items-center mb-24 -mt-5 ">
-                  <MdFavorite className="text-red-500 h-6 w-6" />
+                <MdFavoriteBorder 
+                    id="favourite"
+                    onClick={addOrDelete}
+                    className="h-6 w-6" 
+                    />
                   &nbsp;&nbsp;
                   <span> Le gusta a </span>&nbsp;
-                  {/* <Link href={``} className="text-blue-400">
-                    juliarodriguez, pedrotheret y 300 personas más
-                  </Link> */}
                   <Link href={`/common/components/likes/product/${number}`} className="text-blue-400">
-                    2 personas.
+                    {numberLikes} personas.
                   </Link>
+               
                 </div>
               </div>
             </section>

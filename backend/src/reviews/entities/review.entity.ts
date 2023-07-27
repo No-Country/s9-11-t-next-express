@@ -19,7 +19,6 @@ export class Review extends Document {
     ref: 'User',
     required: true,
     index: true,
-    unique: true,
   })
   user_id: string
 

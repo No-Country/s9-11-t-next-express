@@ -35,9 +35,9 @@ export class Like extends Document {
     ref: 'User',
     required: true,
     index: true,
-    unique: true,
   })
   user_id: string
 }
 
 export const LikeSchema = SchemaFactory.createForClass(Like)
+LikeSchema.index({ user_id: 1, product_id: 1 }, { unique: true })

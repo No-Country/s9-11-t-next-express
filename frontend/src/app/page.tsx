@@ -16,7 +16,7 @@ export default function Home() {
   
   return (
 
-    <main className="min-h-[78vh] max-w-[1200px] m-auto ">
+    <main className="min-h-auto max-w-[1200px] m-auto ">
       {
         pathname === '/common/components/login'?
         <>

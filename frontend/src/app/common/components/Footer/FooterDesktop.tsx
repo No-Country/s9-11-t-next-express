@@ -18,7 +18,7 @@ export default function FooterDesktop() {
     pathname === '/common/components/register' || pathname === '/common/components/register/hub'?
     <></>
     :
-    <footer className="flex justify-center bg-white mt-[1280px]">
+    <footer className="flex justify-center bg-white ">
       <div className="h-custom-height flex flex-col max-w-[1200px] min-w-full">
         <section className="pt-5 h-[282px]">
           <div className="flex justify-center pt-11">

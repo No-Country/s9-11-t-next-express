@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className='bg-[#ebebeb] flex flex-col justify-between min-h-screen'>
+      <body className='bg-[#ebebeb] flex flex-col justify-between min-h-auto'>
         <div>
           <Header />
           {children}

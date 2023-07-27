@@ -30,7 +30,7 @@ export class CategoriesService {
   }
 
   async findAll() {
-    return await this.CategoryModel.find()
+    return await this.CategoryModel.
   }
 
   async findOne(id: string) {

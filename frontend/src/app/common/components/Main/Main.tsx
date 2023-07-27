@@ -48,14 +48,18 @@ import DropdownUser from './components/dropdown_user';
   // const images: Array<string> = ["clon_mercadolibre.jpg", "otro.jpg", "main_cocina.jpg", "main_tecnologia.jpg"]
 
 export default function Main() {
-  const userMenu: object[] = [{id: 1, text: 'Salir'}];
+  const userMenu: object[] = [
+    {id: 1, text: 'Mi perfil', do: () => {router.push('/common/components/myprofile');}},
+    {id: 2, text: 'Seguidores y seguidos', do: () => {router.push('/common/components/followers');}},
+    {id: 3, text: 'Salir', do: () => {deleteToken()}},
+  ];
+
   let [user, setUser ] = useState([])
   let [isLogged, setIsLogged ] = useState(false)
+  let [pageDrop, setPageDropdown ] = useState("")
   let router = useRouter();
   let pahtname = usePathname();
   SwiperCore.use([Autoplay])
-
-
 
   const deleteToken = () => {
     setUser([]);
@@ -64,6 +68,7 @@ export default function Main() {
     // router.push('/')
     location.reload()
   }
+
 
   return (
     <main className="flex justify-center">
@@ -93,8 +98,12 @@ export default function Main() {
               navigation={true}
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
-              onSlideChange={() => console.log("slide change")}
-              onSwiper={(swiper) => console.log(swiper)}
+              // onSlideChange={() => /*console.log("slide change")*/ {
+              //  doS
+              
+              // }}
+              // onSlideChange={doSomething}
+              // onSwiper={(swiper) => console.log(swiper)}
               className="mySwiper z-0"
               autoplay={{
                 delay: 3000,
@@ -116,7 +125,7 @@ export default function Main() {
                 </ul>
               </div>
             </div> */}
-             <DropdownUser userMenu={userMenu} deleteToken={deleteToken}/>
+             <DropdownUser userMenu={userMenu} />
               <SwiperSlide>
                 <div className="flex justify-center bg-black">
                   <Image

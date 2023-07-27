@@ -7,7 +7,7 @@ import PrimaryButton from "../../../common/components/Buttom/PrimaryButton";
 import SecondaryButton from "../../../common/components/Buttom/SecondaryButton";
 import BasicRating from "../../../common/components/PageProduct/Rating";
 // import { useRouter } from "next/router";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Phone from "../../../../../public/phone.png";
 import { MdFavorite } from "react-icons/md";
@@ -16,12 +16,20 @@ import { NextRouter } from "next/router";
 import { fetchDataReview, fetchProductData } from "@/slice/productSlice";
 import { Button, Rating } from "@mui/material";
 import PrimaryButton2 from "@/app/common/components/Buttom/PrimaryButton2";
+declare global {
+  interface Window {
+      FB:any;
+  }
+}
 
-export default function PageProduct() {
+export default function PageProduct(): ReactElement {
+
+  // let FB = window.FB; 
   const router = useRouter();
-  const currentUrl = window.location.href;
+
+  const pathname = usePathname()
   const regex = /\/([\w-]+)$/;
-  const match = currentUrl.match(regex);
+  const match = pathname.match(regex);
   const number = match ? match[1] : null;
 
   const [productData, setProductData] = useState({
@@ -30,6 +38,7 @@ export default function PageProduct() {
     characteristics: [],
     qualification: 0,
     description: "",
+
     images: [],
     id_user: {
       name: "",
@@ -57,6 +66,7 @@ export default function PageProduct() {
       console.error("Token no encontrado en Local Storage");
     }
   }, [number]);
+
 
   useEffect(() => {
     fetchProductData(number)

@@ -39,7 +39,10 @@ interface ProductData {
     try {
       const apiUrl = `https://meliclon-social-api-nc.onrender.com/api/meliclon/v1/products/${productId}`;
       const response = await axios.get(apiUrl);
-      const data = response.data;
+      const data = await response.data;
+      console.log('Espera');
+      
+     console.log(data);
      
       return data;
     } catch (error) {

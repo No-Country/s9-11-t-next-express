@@ -29,14 +29,6 @@ const [input, setInput ] = useState({
   password: '',
 })
 
-// useEffect(() => {
-// console.log(pathname);
-// })
-
-// const user =  {
-//   "email": "test@example.com",
-//   "password": ".a@1234.TEST",
-// }
 
 interface Errors {
   name: string,
@@ -105,11 +97,7 @@ const continueProcess = (e: any) => {
     password.setAttribute('class', 'border rounded border-gray-200 w-[300px] h-10 py-6 ')
 
   } 
-  // else {
-  //   setOk(false);
-  // }
 
-  
 }
 
 function handleInput(e?: any): boolean {
@@ -217,7 +205,6 @@ const login = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
             Teléfono, e-mail o usuario
           </label>
 
-
               <input 
                 type="email"
                 id="email" 
@@ -228,7 +215,6 @@ const login = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
                 className='border rounded border-gray-200 w-[300px] h-10 py-6 ' 
                 placeholder="ej. example@gmail.com"
               />
-
 
               <input 
                 type="password"
@@ -247,12 +233,7 @@ const login = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
               errors.name? (<p className='text-red-400'>{errors.name }</p>) : false
             
             }
-          {/* <button 
-            id="continue" 
-            onClick={ok === false? continueProcess: (e) => login(e)} 
-            className="bg-blue-500 py-4 rounded-md px-11 mt-4 text-white font-semibold">
-            Continuar
-          </button> */}
+
           <button 
             id="continue" 
             onClick={ok === false? continueProcess: (e) => login(e)} 

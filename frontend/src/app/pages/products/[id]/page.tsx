@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Slide } from "react-slideshow-image";
 // import Slideshow from "./Slides";
 import PrimaryButton from "../../../common/components/Buttom/PrimaryButton";
@@ -13,8 +13,8 @@ import Phone from "../../../../../public/phone.png";
 import { MdFavorite } from "react-icons/md";
 import Link from "next/link";
 import { NextRouter } from "next/router";
-import { fetchProductData } from "@/slice/productSlice";
-import { Button } from "@mui/material";
+import { fetchDataReview, fetchProductData } from "@/slice/productSlice";
+import { Button, Rating } from "@mui/material";
 import PrimaryButton2 from "@/app/common/components/Buttom/PrimaryButton2";
 
 export default function PageProduct() {
@@ -23,9 +23,40 @@ export default function PageProduct() {
   const regex = /\/([\w-]+)$/;
   const match = currentUrl.match(regex);
   const number = match ? match[1] : null;
-  console.log("soy el id", number);
 
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState({
+    name: "",
+    price: 0,
+    characteristics: [],
+    qualification: 0,
+    description: "",
+    images: [],
+    id_user: {
+      name: "",
+      address: "",
+    },
+  });
+  const [productDataReview, setProductDataReview] = useState(null);
+
+
+
+  useEffect(() => {
+    // Obtenemos el objeto completo almacenado en Local Storage
+    const storedData = localStorage.getItem("token");
+    const accessToken = storedData ? JSON.parse(storedData).token : null;
+    // Si tienes un valor válido de token, realizar la solicitud con él
+    if (accessToken) {
+      fetchDataReview(accessToken, number)
+        .then((data) => {
+          setProductDataReview(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching product data:", error);
+        });
+    } else {
+      console.error("Token no encontrado en Local Storage");
+    }
+  }, [number]);
 
   useEffect(() => {
     fetchProductData(number)
@@ -36,8 +67,13 @@ export default function PageProduct() {
         console.error("Error fetching product data:", error);
       });
   }, [number]);
-  console.log(productData?.name);
-  const truncatedPrice = (productData?.price * 1.1).toFixed(2);
+const [selectedImage, setSelectedImage] = useState(productData.images[0]); 
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+  console.log(selectedImage)
+  const truncatedPrice = (productData?.price * 1.1).toFixed(3);
   const propsProduc = {
     title:
       'Notebook dell inspiron 3525 plateada 15.5", AMD Ryzen 5 5625U 8GB de RAM 256GB SSD, AMD Radeon RX Vega 7 120 Hz 1920x1080px Windows 11 Home',
@@ -196,35 +232,26 @@ export default function PageProduct() {
                 <div className="flex flex-row  ">
                   <div className="w-[120px]">
                     <ul>
-                      <li className="border border-gray-300 hover:border-black cursor-pointer">
-                        <Image
-                          src={Phone}
-                          alt="detail-image"
-                          width={400}
-                          height={250}
-                        />
-                      </li>
-                      <li className="border border-gray-300 hover:border-black cursor-pointer mt-2">
-                        <Image
-                          src={Phone}
-                          alt="detail-image"
-                          width={400}
-                          height={250}
-                        />
-                      </li>
-                      <li className="border border-gray-300 hover:border-black cursor-pointer mt-2">
-                        <Image
-                          src={Phone}
-                          alt="detail-image"
-                          width={400}
-                          height={250}
-                        />
-                      </li>
+                      {productData.images.map((element, index) => (
+                        <li
+                          key={index}
+                          className="border border-gray-300 hover:border-black cursor-pointer"
+                          onClick={() => handleImageClick(element)}
+                        >
+                          <Image
+                            src={element}
+                            alt={`detail-image-${index}`}
+                            width={400}
+                            height={250}
+                          />
+                        </li>
+                      ))}
+                 
                     </ul>
                   </div>
                   <div className="w-[980px] h-[400px] mb-[100px]">
                     <Image
-                      src={Phone}
+                      src={selectedImage}
                       alt="detail-image"
                       width={5000}
                       height={1000}
@@ -707,7 +734,7 @@ export default function PageProduct() {
           {/* <div>Soy la linea separadora</div> */}
           <br />
           <hr />
-          <div>
+          <div className="mb-10">
             <div>
               <h2 className="mb-12 text-2xl mt-[50px]">
                 {" "}
@@ -715,11 +742,95 @@ export default function PageProduct() {
               </h2>
             </div>
             <div>
-              <BasicRating
-                stars={
-                  productData?.qualification ? productData?.qualification : 4
-                }
-              />
+              {productDataReview?.FollowingReviews?.filter(
+                (review) => review.user_id.name
+              ).map((review) => {
+                const date = new Date(review.updatedAt);
+
+                const months = [
+                  "Ene.",
+                  "Feb.",
+                  "Mar.",
+                  "Abr.",
+                  "May.",
+                  "Jun.",
+                  "Jul.",
+                  "Ago.",
+                  "Sep.",
+                  "Oct.",
+                  "Nov.",
+                  "Dic.",
+                ];
+
+                const day = date.getDate();
+                const month = months[date.getMonth()];
+                const year = date.getFullYear();
+
+                const formattedDate = `${day} ${month} ${year}`;
+
+                return (
+                  <div key={review.id}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <BasicRating stars={review.stars} />
+                        <img
+                          className="rounded-full mr-5 ml-5  content-center "
+                          src={review.user_id.avatar}
+                          alt=""
+                        />
+                        <p className="mt-3 mr-5">{review.user_id.name}</p>
+                      </div>
+                      <div>
+                        <p className="mt-3 mr-10">{formattedDate}</p>
+                      </div>
+                    </div>
+                    <div className="mt-6">
+                      <p>{review.comment}</p>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Mapear sobre las revisiones que no tienen el campo 'name' */}
+              {productDataReview?.FollowingReviews?.filter(
+                (review) => !review.user_id.name
+              ).map((review) => {
+                // Mover la declaración de constantes aquí
+                const date = new Date(review.updatedAt);
+
+                const months = [
+                  "Ene.",
+                  "Feb.",
+                  "Mar.",
+                  "Abr.",
+                  "May.",
+                  "Jun.",
+                  "Jul.",
+                  "Ago.",
+                  "Sep.",
+                  "Oct.",
+                  "Nov.",
+                  "Dic.",
+                ];
+
+                const day = date.getDate();
+                const month = months[date.getMonth()];
+                const year = date.getFullYear();
+
+                const formattedDate = `${day} ${month} ${year}`;
+
+                return (
+                  <div key={review.id}>
+                    <div className="flex items-center justify-between">
+                      <BasicRating stars={review.stars} />
+                      <p className="mt-3 mr-10">{formattedDate}</p>
+                    </div>
+                    <div>
+                      <p className="mt-6 ">{review.comment}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -35,7 +35,6 @@ interface ProductData {
       console.error(error);
     }
   };
-
   export const fetchProductData = async (productId) => {
     try {
       const apiUrl = `https://meliclon-social-api-nc.onrender.com/api/meliclon/v1/products/${productId}`;
@@ -48,8 +47,24 @@ interface ProductData {
       throw error;
     }
   };
+  export const fetchDataReview = async (accessToken,id) => {
+    console.log(accessToken, "soy token")
+    try {
+      const url = `https://meliclon-social-api-nc.onrender.com/api/meliclon/v1/reviews/${id}`;
+  
+      const response = await axios.get(url, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+  
+      const data = response.data;
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
 
- 
 
 const useFetch = (endpoint) => {
   const [data, setData] = useState([]);

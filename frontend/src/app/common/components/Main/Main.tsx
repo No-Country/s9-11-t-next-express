@@ -108,7 +108,10 @@ export default function Main() {
                 disableOnInteraction: false,
               }}
             >
-              <DropdownUser userMenu={userMenu} />
+              <div className="-mt-[90px]">
+
+              <DropdownUser userMenu={userMenu}  />
+              </div>
              
               
               <SwiperSlide>

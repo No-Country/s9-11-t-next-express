@@ -12,10 +12,10 @@ import {
   Scrollbar,
   A11y,
 } from "swiper/modules";
-import clonImage from "../../../../../public/images/home/clon_mercadolibre.jpg";
-import cupones from "../../../../../public/images/home/main_cupones.jpg";
-import cocina from "../../../../../public/images/home/main_cocina.jpg";
-import tecnologia from "../../../../../public/images/home/main_tecnologia.jpg";
+import clonImage from "../../../../../public/images/home/clon_mercadolibre.svg";
+import cupones from "../../../../../public/images/home/main_cupones.svg";
+import cocina from "../../../../../public/images/home/main_cocina.svg";
+import tecnologia from "../../../../../public/images/home/main_tecnologia.svg";
 import logistic from "../../../../../public/images/home/main_logistic.png";
 import mercado from "../../../../../public/images/home/main_mercado.jpg";
 import laptop from "../../../../../public/images/home/main_laptops.jpg";
@@ -42,112 +42,102 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { usePathname, useRouter } from "next/navigation";
 // import "swiper";
-import DropdownUser from './components/dropdown_user';
+import DropdownUser from "./components/dropdown_user";
 import FooterDesktop from "../Footer/FooterDesktop";
 
-
-  // const images: Array<string> = ["clon_mercadolibre.jpg", "otro.jpg", "main_cocina.jpg", "main_tecnologia.jpg"]
+// const images: Array<string> = ["clon_mercadolibre.jpg", "otro.jpg", "main_cocina.jpg", "main_tecnologia.jpg"]
 
 export default function Main() {
   const userMenu: object[] = [
-    {id: 1, text: 'Mi perfil', do: () => {router.push('/common/components/myprofile');}},
-    {id: 2, text: 'Seguidores y seguidos', do: () => {router.push('/common/components/followers');}},
-    {id: 3, text: 'Salir', do: () => {deleteToken()}},
+    {
+      id: 1,
+      text: "Mi perfil",
+      do: () => {
+        router.push("/common/components/myprofile");
+      },
+    },
+    {
+      id: 2,
+      text: "Seguidores y seguidos",
+      do: () => {
+        router.push("/common/components/followers");
+      },
+    },
+    {
+      id: 3,
+      text: "Salir",
+      do: () => {
+        deleteToken();
+      },
+    },
   ];
 
-  let [user, setUser ] = useState([])
-  let [isLogged, setIsLogged ] = useState(false)
-  let [pageDrop, setPageDropdown ] = useState("")
+  let [user, setUser] = useState([]);
+  let [isLogged, setIsLogged] = useState(false);
+  let [pageDrop, setPageDropdown] = useState("");
   let router = useRouter();
   let pahtname = usePathname();
-  SwiperCore.use([Autoplay])
+  SwiperCore.use([Autoplay]);
 
   const deleteToken = () => {
     setUser([]);
-    setIsLogged(false)
+    setIsLogged(false);
     localStorage.clear();
     // router.push('/')
-    location.reload()
-  }
-
+    location.reload();
+  };
 
   return (
     <main className="flex justify-center">
-      <div className="h-custom-height flex flex-col max-w-[1200px] min-w-full">
-        <section className="h-[282px] mb-40">
-        {/* <div className="flex flex-col items-end">
-            <div className=" z-10 bg-white px-[44px] mr-[150px] ">
-              <ul>
-                  {
-                      userMenu.map(el => {
-                          return (
-                              <li>{el}</li>
-                          )
-                      })
-                  }
-              </ul>
-            </div>
-          </div> */}
-
+      <div className="h-auto flex flex-col  w-full">
+        <section className="h-[340px] w-full">
           <div className="h-[10px] -mx-[200px]">
-        
             <Swiper
               modules={[Navigation, Pagination, Scrollbar, A11y]}
               spaceBetween={0}
               slidesPerView={1}
               effect="fade"
               navigation={true}
-              pagination={{ clickable: true }}
-              scrollbar={{ draggable: true }}
-              // onSlideChange={() => /*console.log("slide change")*/ {
-              //  doS
-              
-              // }}
-              // onSlideChange={doSomething}
-              // onSwiper={(swiper) => console.log(swiper)}
+              // pagination={{ clickable: true }}
+              // scrollbar={{ draggable: true }}
               className="mySwiper z-0"
+              loop={true}
+            
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
               }}
             >
-            {/* <div className="flex flex-col items-end">
-              <div id="user-dropdown" className=" z-10 bg-white  mr-[352px] -mt-[250px] shadow-md hidden hover:bg-blue-500">
-                <ul className="flex justify-start items-start text-left hover:bg-blue-500">
-                    {
-                      userMenu.map(el => {
-                          return (
-                              <li onClick={deleteToken} className="text-left pr-[73px] px-[6px] cursor-pointer hover:bg-blue-500 hover:text-white">
-                                {el}
-                              </li>
-                          )
-                      })
-                    }
-                </ul>
-              </div>
-            </div> */}
-             <DropdownUser userMenu={userMenu} />
+              <DropdownUser userMenu={userMenu} />
+             
+              
               <SwiperSlide>
-                <div className="flex justify-center bg-black">
+                <div className="flex justify-center ">
                   <Image
-                    className="h-[250px] w-[1000px]"
+                    className="h-[340px] w-full object-cover"
                     src={clonImage}
                     alt="clon"
                   />
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="bg-black flex justify-center">
-                  <Image className="h-[250px] " src={cupones} alt="cupones" />
+                <Image src={cocina} className="h-[340px] w-full object-cover" alt="cocina" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="flex justify-center">
+                  <Image
+                    className="h-[340px] w-full object-cover"
+                    src={cupones}
+                    alt="cupones"
+                  />
                 </div>
               </SwiperSlide>
+             
+                
               <SwiperSlide>
-                <Image className="h-[250px] w-full" src={cocina} alt="cocina" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="flex justify-center bg-black">
+                <div className="flex justify-center">
                   <Image
-                    className="h-[250px]"
+                    className="h-[340px] w-full object-cover"
                     src={tecnologia}
                     alt="tecnologia"
                   />
@@ -392,100 +382,96 @@ export default function Main() {
           </h1>
 
           <div className="grid grid-cols-7 mx-auto h-[340px] w-[1200px] bg-white rounded-lg ">
-
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
-              <div >
+              <div>
                 <AiOutlineCar className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Carros, Motos y otros</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div className="hover:text-gray-500">
-                <RiComputerLine className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <RiComputerLine className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Computación</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <PiTShirtThin className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <PiTShirtThin className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Ropa y Accesorios</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <PiArmchair className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <PiArmchair className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Hogar y Muebles</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <GiCarWheel className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <GiCarWheel className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Accesorios para vehículos</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <BiSolidFridge className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <BiSolidFridge className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Electrodomésticos</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <BsCamera className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <BsCamera className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Camaras y Accesorios</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <Link href={"/pages/products"}>
-              <div className='flex justify-center'>
-                <GiSmartphone className="w-[40px] h-[40px] mb-2 text-gray-500"/>
-              </div>
-              <p className="text-gray-500">Celulares y Teléfonos</p>
+                <div className="flex justify-center">
+                  <GiSmartphone className="w-[40px] h-[40px] mb-2 text-gray-500" />
+                </div>
+                <p className="text-gray-500">Celulares y Teléfonos</p>
               </Link>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <GiLipstick className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <GiLipstick className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Belleza y Cuidado </p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <BiFootball className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <BiFootball className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Deportes y Fitness</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-
-                <AiOutlineAudio className="w-[40px] h-[40px] mb-2 text-gray-500"/>
-
+                <AiOutlineAudio className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Electrónica, Audio y Video</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <MdOutlineVideogameAsset className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <MdOutlineVideogameAsset className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Consolas y Videojuegos</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <TbHorseToy className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <TbHorseToy className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Juegos y Juguetes</p>
             </div>
             <div className="flex flex-col justify-center items-center border-r border-b border-gray-200 hover:bg-blue-500 hover:text-white cursor-pointer">
               <div>
-                <AiOutlineTool className="w-[40px] h-[40px] mb-2 text-gray-500"/>
+                <AiOutlineTool className="w-[40px] h-[40px] mb-2 text-gray-500" />
               </div>
               <p className="text-gray-500">Herramientas</p>
             </div>
           </div>
         </section>
         <div className="w-full ">
-
-      <FooterDesktop/>
+          <FooterDesktop />
         </div>
       </div>
     </main>

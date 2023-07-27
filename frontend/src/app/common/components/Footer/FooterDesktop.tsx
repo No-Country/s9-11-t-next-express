@@ -9,7 +9,7 @@ export default function FooterDesktop() {
     <>
     {
     pathname === '/common/components/login'?
-    <div className="h-[100px] bg-white">
+    <div className="h-[100px] bg-white mt-14">
       <div className="flex flex-col justify-center items-center my-8">
         <p className="text-blue-400 text-xs">Cómo cuidamos tu privacidad </p>
         <p className="text-gray-400 text-xs">Copyright © 1999-2023 MercadoLibre Colombia LTDA.</p>
@@ -18,7 +18,7 @@ export default function FooterDesktop() {
     pathname === '/common/components/register' || pathname === '/common/components/register/hub'?
     <></>
     :
-    <footer className="flex justify-center bg-white ">
+    <footer className="flex justify-center bg-white mt-14">
       <div className="h-custom-height flex flex-col max-w-[1200px] min-w-full">
         <section className="pt-5 h-[282px]">
           <div className="flex justify-center pt-11">

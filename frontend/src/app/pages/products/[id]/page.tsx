@@ -45,7 +45,7 @@ export default function PageProduct(): ReactElement {
       address: "",
     },
   });
-  const [productDataReview, setProductDataReview] = useState(null);
+  const [productDataReview, setProductDataReview] = useState<any>(null);
 
 
 

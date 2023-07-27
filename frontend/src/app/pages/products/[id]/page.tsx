@@ -16,6 +16,7 @@ import { NextRouter } from "next/router";
 import { fetchDataReview, fetchProductData } from "@/slice/productSlice";
 import { Button, Rating } from "@mui/material";
 import PrimaryButton2 from "@/app/common/components/Buttom/PrimaryButton2";
+import FooterDesktop from "@/app/common/components/Footer/FooterDesktop";
 declare global {
   interface Window {
       FB:any;
@@ -849,6 +850,7 @@ console.log(productData.images)
           </div>
         </div>
       </div>
+      <FooterDesktop/>
     </div>
   );
 }

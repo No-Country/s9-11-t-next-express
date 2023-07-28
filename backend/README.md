@@ -40,4 +40,4 @@ $ yarn run test:cov
 
 ## [.ENV 🔗](.env.example)
 
-## [Api Doc 🔗](README_APIDOC.md)
+## [Api Doc 🔗](https://meliclon-social-api-nc.onrender.com/api/doc#)

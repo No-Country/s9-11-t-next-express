@@ -39,7 +39,7 @@ Los usuarios pueden seguir a otros usuarios e informarse sobre las compras y pre
 | **Fabián Jorge Sánchez** | **Fernando Bouchete** | **Emiliano Elias** | <!-- full names -->
 | <a href="https://github.com/fabisanz-dev"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> | <a href="https://github.com/fernandobouchet"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> | <a href="https://github.com/#"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> |<!---Github profile-->
 | <a href="https://www.linkedin.com/in/fabian-sanchez-j/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/> | <a href="https://www.linkedin.com/in/fernandobouchet/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://www.linkedin.com/in/elias-david-galeano/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |<!--Linkedin profile-->
-| <img src="https://flagcdn.com/16x12/ar.png" /> | <img src="https://flagcdn.com/16x12/cl.png" /> | <img src="https://flagcdn.com/16x12/mx.png" /> |<!-- country flags profile -->
+| <img src="https://flagcdn.com/16x12/ar.png" /> | <img src="https://flagcdn.com/16x12/ar.png" /> | <img src="https://flagcdn.com/16x12/ar.png" /> |<!-- country flags profile -->
 
 ## Fronted: 
 <!-- Img profile -->

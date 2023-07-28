@@ -9,7 +9,7 @@
 Clon parcial de mercado libre que presenta una novedosa funcionalidad social para mejorar la experiencia de compra mediante la creación de una comunidad interactiva donde los usuarios pueden conectarse, seguir a otros y descubrir productos populares basados en las preferencias de aquellos a quienes siguen.
 Los usuarios pueden seguir a otros usuarios e informarse sobre las compras y preferencias de sus seguidores. Al navegar por la plataforma, pueden ver la cantidad de likes y reseñas que han recibido los productos de sus seguidores, lo que les permite tomar decisiones informadas sobre sus compras, de esta manera la experiencia de compra se transforma en una experiencia social, con las influencia entre los usuarios.
 
-*Características / Problemática a resolver*:
+*Características*:
 
 1) Seguir a Otros Usuarios: Los usuarios tienen la opción de seguir a otros miembros de la comunidad para mantenerse actualizados sobre sus compras, reseñas y productos favoritos.
 
@@ -19,10 +19,8 @@ Los usuarios pueden seguir a otros usuarios e informarse sobre las compras y pre
 
 <hr/>
 
-### 🔗 <a href="#">Documentacion General</a> <!-- Cómo inicializar el proyecto en mi ordenador. -->
-### 🔗 <a href="#">Documentacion Backend</a> <!-- Estructura, endpoints, esquemas, etc ... -->
-### 🔗 <a href="#">Documentacion Frontend</a> <!-- Estructuras, test, etc... -->
-### 🔗 <a href="#">User History</a>
+### 🔗 <a href="https://github.com/No-Country/s9-11-t-next-express/blob/main/backend/README.md">Documentacion Backend</a> <!-- Estructura, endpoints, esquemas, etc ... -->
+### 🔗 <a href="https://github.com/No-Country/s9-11-t-next-express/blob/main/frontend/README.md">Documentacion Frontend</a> <!-- Estructuras, test, etc... -->
 
 <hr/>
 

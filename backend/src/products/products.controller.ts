@@ -6,37 +6,73 @@ import {
   Patch,
   Param,
   Delete,
+  UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common'
 import { ProductsService } from './products.service'
 import { CreateProductDto } from './dto/create-product.dto'
 import { UpdateProductDto } from './dto/update-product.dto'
+import { ApiTags } from '@nestjs/swagger'
+import {
+  ApiCreateProduct,
+  ApiFindAllProducts,
+  ApiFindProduct,
+  ApiPatchProduct,
+  ApiPatchUploadFiles,
+  ApiRemoveProduct,
+} from './decorators/apiDocProducts.decorator'
+import { FilesInterceptor } from '@nestjs/platform-express'
+import { Auth } from 'src/users/decorators'
 
+@ApiTags('Products')
 @Controller('products')
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) {}
+  constructor(private readonly productService: ProductsService) {}
 
+  @ApiCreateProduct()
   @Post()
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productsService.create(createProductDto)
+  @Auth()
+  async create(@Body() createProductDto: CreateProductDto) {
+    return this.productService.create(createProductDto)
   }
 
+  @ApiPatchUploadFiles()
+  @Patch('files/:productId')
+  @Auth()
+  @UseInterceptors(FilesInterceptor('files'))
+  async uploadFiles(
+    @UploadedFiles() files: Array<Express.Multer.File>,
+    @Param('productId') productId: string,
+  ) {
+    return this.productService.uploadFiles(files, productId)
+  }
+
+  @ApiFindAllProducts()
   @Get()
   findAll() {
-    return this.productsService.findAll()
+    return this.productService.findAll()
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productsService.findOne(id)
+  @ApiFindProduct()
+  @Get(':productId')
+  findOne(@Param('productId') productId: string) {
+    return this.productService.findOne(productId)
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productsService.update(id, updateProductDto)
+  @ApiPatchProduct()
+  @Patch(':productId')
+  @Auth()
+  update(
+    @Param('productId') productId: string,
+    @Body() updateProductDto: UpdateProductDto,
+  ) {
+    return this.productService.update(productId, updateProductDto)
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productsService.remove(id)
+  @ApiRemoveProduct()
+  @Delete(':productId')
+  @Auth()
+  remove(@Param('productId') productId: string) {
+    return this.productService.remove(productId)
   }
 }

@@ -1,0 +1,174 @@
+openapi: 3.0.0
+paths:
+  /api/meliclon/v1/hello:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /api/meliclon/v1/users:
+    post:
+      operationId: UsersController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: ''
+  /api/meliclon/v1/users/login:
+    post:
+      operationId: UsersController_loginUser
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  /api/meliclon/v1/users/current:
+    get:
+      operationId: UsersController_findUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /api/meliclon/v1/users/{id}:
+    patch:
+      operationId: UsersController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: ''
+    delete:
+      operationId: UsersController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+  /api/meliclon/v1/followers:
+    post:
+      operationId: CreateFollower
+      summary: ''
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFollowerDto'
+      responses:
+        '200':
+          description: Follower created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Follower'
+        '400':
+          description: UnAuthorized
+        '401':
+          description: >-
+            Invalid Follower | A user cannot follow themselves | Duplicate
+            followers
+        '404':
+          description: Following user not found
+      tags: &ref_0
+        - Followers
+      security:
+        - access-token: []
+  /api/meliclon/v1/followers/following/current:
+    get:
+      operationId: FollowersController_findFollowerByCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: *ref_0
+  /api/meliclon/v1/followers/current:
+    get:
+      operationId: FollowersController_findFollowingCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: *ref_0
+  /api/meliclon/v1/followers/{followingId}:
+    delete:
+      operationId: FollowersController_remove
+      parameters:
+        - name: followingId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags: *ref_0
+info:
+  title: MeliClon-Social
+  description: |-
+    MeliClon-Social Api Doc. 
+     Base endpoint: api/meliclon/v1/
+  version: '1.0'
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    CreateUserDto:
+      type: object
+      properties: {}
+    UpdateUserDto:
+      type: object
+      properties: {}
+    CreateFollowerDto:
+      type: object
+      properties:
+        follower_id:
+          type: string
+          description: 'ID of the follower | ref: User'
+          format: ObjectId
+          example: 60e8a37134f59e001fde6c48
+        following_id:
+          type: string
+          description: 'ID of the follower | ref: User'
+          format: ObjectId
+          example: 60e8a37134f59e001fde6c48
+      required:
+        - follower_id
+        - following_id
+    Follower:
+      type: object
+      properties:
+        follower_id:
+          type: string
+          description: 'ID of the follower | ref: User'
+          format: ObjectId
+          example: 60e8a37134f59e001fde6c48
+        following_id:
+          type: string
+          description: 'ID of the follower | ref: User'
+          uniqueItems: true
+          format: ObjectId
+          example: 64af71c34bb78ce4561e0908
+      required:
+        - follower_id
+        - following_id

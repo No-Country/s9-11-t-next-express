@@ -6,7 +6,8 @@
 
 <p  align="center" ><a href="https://www.youtube.com/watch?v=RALokRBqiHY" target="_blank" rel="noopener noreferrer"> <img src="https://img.shields.io/badge/Video Preview%20-%23FF0000.svg?&style=for-the-badge&logo=YouTube&logoColor=white"/></a></p>
 
-[![Estado](https://img.shields.io/badge/estado-en%20progreso-blue)](https://github.com/user/proyecto)
+[![Estado](https://img.shields.io/badge/estado-en%20progreso-blue)](https://github.com/No-Country/s9-11-t-next-express)
+[![Generic badge](https://img.shields.io/badge/version-alfa-<COLOR>.svg)](https://github.com/No-Country/s9-11-t-next-express)
 
 Clon parcial de mercado libre que presenta una novedosa funcionalidad social para mejorar la experiencia de compra mediante la creación de una comunidad interactiva donde los usuarios pueden conectarse, seguir a otros y descubrir productos populares basados en las preferencias de aquellos a quienes siguen.
 Los usuarios pueden seguir a otros usuarios e informarse sobre las compras y preferencias de sus seguidores. Al navegar por la plataforma, pueden ver la cantidad de likes y reseñas que han recibido los productos de sus seguidores, lo que les permite tomar decisiones informadas sobre sus compras, de esta manera la experiencia de compra se transforma en una experiencia social, con las influencia entre los usuarios.

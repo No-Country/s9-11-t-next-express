@@ -1,10 +1,12 @@
-# s9-11-t-next-express
+<h1 align="center">Meli Clon Social</h1>
 
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=RALokRBqiHY">
-    <img src="https://res.cloudinary.com/dgsrbbfma/image/upload/v1690506637/No-country-s9/2023-07-27_22_08_40-Redise%C3%B1o_de_Mercado_Libre_-_YouTube_-_Brave_x3wgol.png" alt="Watch the video pigmeo" width="500" height="280" border="10" />
-  </a>
+    <img src="https://res.cloudinary.com/dgsrbbfma/image/upload/v1690506637/No-country-s9/2023-07-27_22_08_40-Redise%C3%B1o_de_Mercado_Libre_-_YouTube_-_Brave_x3wgol.png" alt="Watch the video pigmeo" width="900" height="400" border="10" />
 </div>
+
+<p  align="center" ><a href="https://www.youtube.com/watch?v=RALokRBqiHY" target="_blank" rel="noopener noreferrer"> <img src="https://img.shields.io/badge/Video Preview%20-%23FF0000.svg?&style=for-the-badge&logo=YouTube&logoColor=white"/></a></p>
+
+[![Estado](https://img.shields.io/badge/estado-en%20progreso-blue)](https://github.com/user/proyecto)
 
 Clon parcial de mercado libre que presenta una novedosa funcionalidad social para mejorar la experiencia de compra mediante la creación de una comunidad interactiva donde los usuarios pueden conectarse, seguir a otros y descubrir productos populares basados en las preferencias de aquellos a quienes siguen.
 Los usuarios pueden seguir a otros usuarios e informarse sobre las compras y preferencias de sus seguidores. Al navegar por la plataforma, pueden ver la cantidad de likes y reseñas que han recibido los productos de sus seguidores, lo que les permite tomar decisiones informadas sobre sus compras, de esta manera la experiencia de compra se transforma en una experiencia social, con las influencia entre los usuarios.
@@ -31,6 +33,7 @@ Los usuarios pueden seguir a otros usuarios e informarse sobre las compras y pre
 ![React](https://img.shields.io/badge/React-149eca?style=for-the-badge&logo=react&logoColor=fff) ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white) ![Sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white) ![Axios](https://img.shields.io/badge/-Axios-671ddf?style=for-the-badge&logo=axios&logoColor=white)
 
 <hr/>
+<h3 align="center">Team 💻</h3>
 
 ## Backend: 
 <!-- Img profile -->
